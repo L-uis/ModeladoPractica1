@@ -1,6 +1,6 @@
 
 /**
- * Clase que permite hacerel cobro de una sucripcion de Memeflix para cuatro dispositivos.
+ * Clase que permite hacer el cobro de una sucripcion de Memeflix para cuatro dispositivos.
  * 
  * @author Mata
  * @author Hermes

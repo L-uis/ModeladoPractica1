@@ -1,6 +1,6 @@
 
 /**
- * Clase que permite hacerel cobro de una sucripcion normal de HVO Max.
+ * Clase que permite hacer el cobro de una sucripcion normal de HVO Max.
  * 
  * @author Mata
  * @author Hermes

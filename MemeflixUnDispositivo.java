@@ -1,6 +1,6 @@
 
 /**
- * Clase que permite hacerel cobro de una sucripcion de Memeflix para un dispositivo.
+ * Clase que permite hacer el cobro de una sucripcion de Memeflix para un dispositivo.
  * 
  * @author Mata
  * @author Hermes

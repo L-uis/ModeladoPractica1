@@ -1,6 +1,6 @@
 
 /**
- * Clase que permite hacerel cobro de una sucripcion premium de Momazon Prime Video.
+ * Clase que permite hacer el cobro de una sucripcion premium de Momazon Prime Video.
  * 
  * @author Mata
  * @author Hermes

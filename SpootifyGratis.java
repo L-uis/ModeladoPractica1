@@ -1,6 +1,6 @@
 
 /**
- * Clase que permite hacerel cobro de una sucripcion gratis de Spootify.
+ * Clase que permite hacer el cobro de una sucripcion gratis de Spootify.
  * 
  * @author Mata
  * @author Hermes

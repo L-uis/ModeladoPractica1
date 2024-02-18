@@ -1,6 +1,6 @@
 
 /**
- * Clase que permite hacerel cobro de una sucripcion sin descuento de Thisney+.
+ * Clase que permite hacer el cobro de una sucripcion sin descuento de Thisney+.
  * 
  * @author Mata
  * @author Hermes

@@ -1,6 +1,6 @@
 
 /**
- * Clase que permite hacerel cobro de una suscripcion de prueba de HVO Max.
+ * Clase que permite hacer el cobro de una suscripcion de prueba de HVO Max.
  * 
  * @author Mata
  * @author Hermes
