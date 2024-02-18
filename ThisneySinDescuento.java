@@ -1,5 +1,12 @@
 
-
+/**
+ * Clase que permite hacerel cobro de una sucripcion sin descuento de Thisney+.
+ * 
+ * @author Mata
+ * @author Hermes
+ * @author Steve
+ * 
+ */
 public class ThisneySinDescuento implements CobroThisney{
 
   private final double MONTO = 160.00;

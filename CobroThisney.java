@@ -1,5 +1,4 @@
 
-
 /**
  * Interface que permite hacer cobros para el servicio Thisney+.
  * 

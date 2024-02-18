@@ -1,3 +1,12 @@
+
+/**
+ * Clase que permite hacerel cobro de una sucripcion gratis de Spootify.
+ * 
+ * @author Mata
+ * @author Hermes
+ * @author Steve
+ * 
+ */
 public class SpootifyGratis implements CobroSpootify{
 
   private final double MONTO = 0.00;
