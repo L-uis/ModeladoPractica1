@@ -1,3 +1,4 @@
+
 /**
  * Interface que permite hacer cobros.
  * 
@@ -6,7 +7,7 @@
  * @author Steve
  * 
  */
-public interface Cobro {
+ public interface Cobro {
 
   /**
    * Metodo que realiza el cobro al suscriptor.
