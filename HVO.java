@@ -10,10 +10,12 @@ public class HVO implements ServicioStreaming{
 
   private CobroHVO cobro;
 
-  public void registrar(Suscriptor s){
-
+  @Override
+  public void registrar(Suscriptor s, String tipoDeSuscripcion) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'registrar'");
   }
-
+  
   public void remover(Suscriptor s){
 
   }
@@ -25,5 +27,17 @@ public class HVO implements ServicioStreaming{
   public String cobro(Cobro c){
 
     return "";
+  }
+
+  @Override
+  public String getRecomendacion() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getRecomendacion'");
+  }
+
+  @Override
+  public String getNombre() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getNombre'");
   }
 }

@@ -16,5 +16,9 @@ public interface ServicioStreaming extends Sujeto{
    * @return estado del cobro.
    */
   String cobro(Cobro c);
+
+  String getRecomendacion();
+
+  String getNombre();
   
 }

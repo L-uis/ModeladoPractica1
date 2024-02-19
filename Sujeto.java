@@ -12,8 +12,9 @@ public interface Sujeto {
    * Metodo que agrega a un suscriptor a la lista del sujeto.
    * 
    * @param s suscriptor que sera agregado a la lista.
+   * @param tipoDeSuscripcion 
    */
-  void registrar(Suscriptor s);
+  void registrar(Suscriptor s, String tipoDeSuscripcion);
 
   /**
    * Metodo que remueve a un suscriptor de la lista del sujeto.
