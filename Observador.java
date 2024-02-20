@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 /**
  * Metodo que implementa el patron observer.
  * 
@@ -10,6 +12,7 @@ public interface Observador {
 
   /**
    * Metodo que actualiza el estado de los observadores.
+   * @throws IOException 
    */
-  void actualizar();
+  void actualizar() throws IOException;
 }

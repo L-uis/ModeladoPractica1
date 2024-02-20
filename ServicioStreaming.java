@@ -10,15 +10,24 @@
 public interface ServicioStreaming extends Sujeto{
 
   /**
-   * Metodo que generara un cobro al suscriptor.
+   * Metodo que genera un cobro al suscriptor.
    * 
-   * @param c cobro que se hara.
-   * @return estado del cobro.
+   * @param suscriptor El suscriptor al que se le hara el cobro.
    */
-  String cobro(Cobro c);
+  void cobro(Suscriptor suscriptor);
 
+  /**
+   * Metodo que da una recomendacion de la lista de recomendaciones del servicio.
+   * 
+   * @return Una recomendacion en forma de cadena.
+   */
   String getRecomendacion();
 
+  /**
+   * Metodo que da el nombre del servicio.
+   * 
+   * @return nombre del servicio.
+   */
   String getNombre();
   
 }
