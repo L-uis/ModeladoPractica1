@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.LinkedList;
 
 public class HVO implements ServicioStreaming{
@@ -24,9 +25,51 @@ public class HVO implements ServicioStreaming{
 
   }
 
-  public String cobro(Cobro c){
+  public void cobro(Suscriptor suscriptor){
 
-    return "";
+    String tipoSuscripcion = suscriptor.getTipoDeSuscripcionHVO();
+    
+    if (tipoSuscripcion.equals("Suscripcion normal de HVO Max")) {
+
+      cobro = new HVONormal();
+
+    }if (tipoSuscripcion.equals("Suscripcion de prueba de HVO Max")) {
+      
+      cobro = new HVOPrueba();
+
+    }
+
+    String estadoDelCobro = cobro.cobro(suscriptor);
+    String rechazado = "El pago a sido rechazado, se cancelara la suscripcion del servicio";
+
+    if (estadoDelCobro.equals(rechazado)) {
+
+      try {
+
+        Escritor.escribirTXT(estadoDelCobro);
+
+      } catch (IOException e) {
+
+        System.out.println("Error: " + e);
+
+      }
+
+      this.remover(suscriptor);
+
+    } else {
+
+      try {
+
+        Escritor.escribirTXT(estadoDelCobro);
+
+      } catch (IOException e) {
+
+        System.out.println("Error: " + e);
+
+      }
+      
+    }
+  
   }
 
   @Override

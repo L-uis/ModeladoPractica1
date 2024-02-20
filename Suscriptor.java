@@ -1,5 +1,5 @@
+import java.io.IOException;
 import java.util.LinkedList;
-
 /**
  * Clase que simula un suscriptor.
  * 
@@ -61,7 +61,7 @@ public class Suscriptor implements Observador{
    */
   public void agregarSuscripcion(ServicioStreaming servicio, String tipoDeSuscripcion){
 
-    servicio.registrar(this,tipoDeSuscripcion);
+    servicio.registrar(this , tipoDeSuscripcion);
 
     servicios.add(servicio);
     
@@ -123,33 +123,33 @@ public class Suscriptor implements Observador{
   
   }
   
-  public void setAntiguedadMemeflix(int nuevaAntiguedad){
+  public void aumentarAntiguedadMemeflix(){
   
-    this.antiguedadMemeflix = nuevaAntiguedad;
-  
-  }
-  
-  public void setAntiguedadHVO(int nuevaAntiguedad){
-  
-    this.antiguedadHVO = nuevaAntiguedad;
+    this.antiguedadMemeflix++;
   
   }
   
-  public void setAntiguedadMomazon(int nuevaAntiguedad){
+  public void aumentarAntiguedadHVO(){
   
-    this.antiguedadMomazon = nuevaAntiguedad;
-  
-  }
-  
-  public void setAntiguedadSpootify(int nuevaAntiguedad){
-  
-    this.antiguedadSpootify = nuevaAntiguedad;
+    this.antiguedadHVO++;
   
   }
   
-  public void setAntiguedadThisney(int nuevaAntiguedad){
+  public void aumentarAntiguedadMomazon(){
   
-    this.antiguedadThisney = nuevaAntiguedad;
+    this.antiguedadMomazon++;
+  
+  }
+  
+  public void aumentarAntiguedadSpootify(){
+  
+    this.antiguedadSpootify++;
+  
+  }
+  
+  public void setAntiguedadThisney(){
+  
+    this.antiguedadThisney++;
   
   }
 
@@ -213,6 +213,17 @@ public class Suscriptor implements Observador{
     this.tipoDeSuscripcionThisney = nuevoTipoDeSuscripcion;
   
   }
+
+  /**
+   * Metodo que simula una transaccion.
+   * 
+   * @param pago Cantidad de dinero que se descontara.
+   */
+  public void descontarSaldo(double pago){
+
+    this.saldo -= pago;
+  
+  }
   
   public void actualizarServicio(String servicio){
 
@@ -229,7 +240,7 @@ public class Suscriptor implements Observador{
   }
 
   @Override
-  public void actualizar() {
+  public void actualizar() throws IOException {
  
     this.recomendacion = servicioActual.getRecomendacion();
     
@@ -237,7 +248,8 @@ public class Suscriptor implements Observador{
   
   }
 
-  public void verRecomendacion(){
-
+  public void verRecomendacion() throws IOException{
+    Escritor.escribirTXT(this.recomendacion);
   }
+
 }

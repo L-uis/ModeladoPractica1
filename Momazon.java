@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.LinkedList;
 
 public class Momazon implements ServicioStreaming{
@@ -24,9 +25,52 @@ public class Momazon implements ServicioStreaming{
 
   }
 
-  public String cobro(Cobro c){
+  @Override
+  public void cobro(Suscriptor suscriptor) {
+    String tipoSuscripcion = suscriptor.getTipoDeSuscripcionHVO();
+    
+    if (tipoSuscripcion.equals("Sucripcion normal de Momazon Prime Video")) {
 
-    return "";
+      cobro = new MomazonNormal();
+
+    }
+    if (tipoSuscripcion.equals("Sucripcion premium de Momazon Prime Video")) {
+      
+      cobro = new MomazonPremium();
+
+    }
+
+    String estadoDelCobro = cobro.cobro(suscriptor);
+    String rechazado = "El pago a sido rechazado, se cancelara la suscripcion del servicio";
+
+    if (estadoDelCobro.equals(rechazado)) {
+
+      try {
+
+        Escritor.escribirTXT(estadoDelCobro);
+
+      } catch (IOException e) {
+
+        System.out.println("Error: " + e);
+
+      }
+
+      this.remover(suscriptor);
+
+    } else {
+
+      try {
+
+        Escritor.escribirTXT(estadoDelCobro);
+
+      } catch (IOException e) {
+
+        System.out.println("Error: " + e);
+
+      }
+      
+    }
+    
   }
 
   @Override

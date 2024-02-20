@@ -1,4 +1,5 @@
 
+import java.io.IOException;
 import java.util.LinkedList;
 
 public class Thisney implements ServicioStreaming{
@@ -25,9 +26,52 @@ public class Thisney implements ServicioStreaming{
 
   }
 
-  public String cobro(Cobro c){
+  @Override
+  public void cobro(Suscriptor suscriptor) {
+    String tipoSuscripcion = suscriptor.getTipoDeSuscripcionHVO();
+    
+    if (tipoSuscripcion.equals("Sucripcion con descuento de Thisney+")) {
 
-    return "";
+      cobro = new ThisneyConDescuento();
+
+    }
+
+    if (tipoSuscripcion.equals("Sucripcion sin descuento de Thisney+")) {
+      
+      cobro = new ThisneySinDescuento();
+
+    }
+
+    String estadoDelCobro = cobro.cobro(suscriptor);
+    String rechazado = "El pago a sido rechazado, se cancelara la suscripcion del servicio";
+
+    if (estadoDelCobro.equals(rechazado)) {
+
+      try {
+
+        Escritor.escribirTXT(estadoDelCobro);
+
+      } catch (IOException e) {
+
+        System.out.println("Error: " + e);
+
+      }
+
+      this.remover(suscriptor);
+
+    } else {
+
+      try {
+
+        Escritor.escribirTXT(estadoDelCobro);
+
+      } catch (IOException e) {
+
+        System.out.println("Error: " + e);
+
+      }
+      
+    }
   }
 
   @Override

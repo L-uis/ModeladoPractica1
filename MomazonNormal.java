@@ -11,10 +11,27 @@ public class MomazonNormal implements CobroMomazon{
   
   private final double MONTO = 130.00;
 
+  private final String RECHAZADO = "El pago a sido rechazado, se cancelara la suscripcion del servicio";
+
+  private final String APROVADO = " a pagado " + MONTO + " a Momazon Prime Video por : Sucripcion normal de Momazon Prime Video";
+
   @Override
-  public String cobro() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'cobro'");
+  public String cobro(Suscriptor suscriptor) {
+
+    double saldoDisponible = suscriptor.getSaldo();
+
+    String nombre = suscriptor.getNombre();
+
+    if (saldoDisponible >= MONTO) {
+
+      return nombre + APROVADO;
+    
+    } else {
+
+      return RECHAZADO;
+      
+    }
+    
   }
   
 }
