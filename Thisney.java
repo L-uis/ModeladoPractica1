@@ -6,19 +6,19 @@ public class Thisney implements ServicioStreaming{
 
   private String nombre;
 
-  private LinkedList<Suscriptor> suscriptores;
+  private LinkedList<Cliente> suscriptores;
 
   private LinkedList<String> recomendaciones;
 
   private CobroThisney cobro;
 
   @Override
-  public void registrar(Suscriptor s, String tipoDeSuscripcion) {
+  public void registrar(Cliente s, String tipoDeSuscripcion) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'registrar'");
   }
 
-  public void remover(Suscriptor s){
+  public void remover(Cliente s){
 
   }
 
@@ -27,51 +27,8 @@ public class Thisney implements ServicioStreaming{
   }
 
   @Override
-  public void cobro(Suscriptor suscriptor) {
-    String tipoSuscripcion = suscriptor.getTipoDeSuscripcionHVO();
-    
-    if (tipoSuscripcion.equals("Sucripcion con descuento de Thisney+")) {
+  public void cobro(Cliente suscriptor) {
 
-      cobro = new ThisneyConDescuento();
-
-    }
-
-    if (tipoSuscripcion.equals("Sucripcion sin descuento de Thisney+")) {
-      
-      cobro = new ThisneySinDescuento();
-
-    }
-
-    String estadoDelCobro = cobro.cobro(suscriptor);
-    String rechazado = "El pago a sido rechazado, se cancelara la suscripcion del servicio";
-
-    if (estadoDelCobro.equals(rechazado)) {
-
-      try {
-
-        Escritor.escribirTXT(estadoDelCobro);
-
-      } catch (IOException e) {
-
-        System.out.println("Error: " + e);
-
-      }
-
-      this.remover(suscriptor);
-
-    } else {
-
-      try {
-
-        Escritor.escribirTXT(estadoDelCobro);
-
-      } catch (IOException e) {
-
-        System.out.println("Error: " + e);
-
-      }
-      
-    }
   }
 
   @Override

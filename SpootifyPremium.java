@@ -16,7 +16,7 @@ public class SpootifyPremium implements CobroSpootify{
   private final String APROVADO = " a pagado " + MONTO + " a Spootify por : Sucripcion premium de Spootify";
 
   @Override
-  public String cobro(Suscriptor suscriptor) {
+  public String cobro(Cliente suscriptor) {
 
     double saldoDisponible = suscriptor.getSaldo();
 

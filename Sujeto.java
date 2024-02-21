@@ -14,14 +14,14 @@ public interface Sujeto {
    * @param s suscriptor que sera agregado a la lista.
    * @param tipoDeSuscripcion 
    */
-  void registrar(Suscriptor s, String tipoDeSuscripcion);
+  void registrar(Cliente cliente, String tipoDeSuscripcion);
 
   /**
    * Metodo que remueve a un suscriptor de la lista del sujeto.
    * 
    * @param s suscriptor que sera removido de la lista.
    */
-  void remover(Suscriptor s);
+  void remover(Cliente cliente);
 
   /**
    * Metodo que notificara a los suscriptores de los cambios en el sujeto.

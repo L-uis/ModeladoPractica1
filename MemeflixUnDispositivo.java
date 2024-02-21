@@ -16,7 +16,7 @@ public class MemeflixUnDispositivo implements CobroMemeflix{
   private final String APROVADO = " a pagado " + MONTO + " a Memeflix por : Sucripcion de Memeflix para un dispositivo";
 
   @Override
-  public String cobro(Suscriptor suscriptor) {
+  public String cobro(Cliente suscriptor) {
 
     double saldoDisponible = suscriptor.getSaldo();
 

@@ -16,7 +16,7 @@ public class MomazonNormal implements CobroMomazon{
   private final String APROVADO = " a pagado " + MONTO + " a Momazon Prime Video por : Sucripcion normal de Momazon Prime Video";
 
   @Override
-  public String cobro(Suscriptor suscriptor) {
+  public String cobro(Cliente suscriptor) {
 
     double saldoDisponible = suscriptor.getSaldo();
 

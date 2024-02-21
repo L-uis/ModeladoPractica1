@@ -16,7 +16,7 @@ public class ThisneyConDescuento implements CobroThisney{
   private final String APROVADO = " a pagado " + MONTO + " a Thisney+ por : Sucripcion con descuento de Thisney+";
 
   @Override
-  public String cobro(Suscriptor suscriptor) {
+  public String cobro(Cliente suscriptor) {
 
     double saldoDisponible = suscriptor.getSaldo();
 
