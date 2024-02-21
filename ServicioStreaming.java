@@ -14,7 +14,7 @@ public interface ServicioStreaming extends Sujeto{
    * 
    * @param suscriptor El suscriptor al que se le hara el cobro.
    */
-  void cobro(Suscriptor suscriptor);
+  void cobro(Cliente suscriptor);
 
   /**
    * Metodo que da una recomendacion de la lista de recomendaciones del servicio.

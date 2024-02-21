@@ -16,7 +16,7 @@ public class HVOPrueba implements CobroHVO{
   private final String APROVADO = " a pagado " + MONTO + " a HVO Max por : Suscripcion de prueba de HVO Max";
 
   @Override
-  public String cobro(Suscriptor suscriptor) {
+  public String cobro(Cliente suscriptor) {
     double saldoDisponible = suscriptor.getSaldo();
 
     String nombre = suscriptor.getNombre();

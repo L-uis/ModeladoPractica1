@@ -3,16 +3,33 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Clase que permite escribir en un archivo txt.
+ * Clase que permite mantener un registro y escribirlo en un archivo txt.
  * 
  * @author Mata
  * @author Hermes
  * @author Steve
  * 
  */
-public class Escritor {
+public class Registro {
 
-  private static final String ARCHIVO = "Simulacion.txt";
+  private String archivo;
+  
+  private StringBuilder stringBuilder;
+
+
+  public Registro(String nombre){
+
+    archivo = nombre+".txt";
+    
+    stringBuilder = new StringBuilder();
+
+  }
+
+  public void anadirRegistro(String cadena){
+
+    stringBuilder.append(cadena + "\n");
+
+  }
 
   /**
    * Metodo que escribe una cadena en el archivo txt.
@@ -20,17 +37,18 @@ public class Escritor {
    * @param cadena Cadena que se escribe en el archivo.
    * @throws IOException
    */
-  public static void escribirTXT(String cadena) throws IOException{
+  public void escribirTXT() throws IOException{
+
 
     FileWriter archivo = null;
     PrintWriter escritor = null;
 
     try {
 
-      archivo = new FileWriter(ARCHIVO);
+      archivo = new FileWriter(this.archivo);
       escritor = new PrintWriter(archivo);
 
-      escritor.println(cadena);
+      escritor.println(stringBuilder.toString());
 
     } catch (Exception e) {
     

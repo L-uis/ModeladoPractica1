@@ -12,7 +12,8 @@ public interface Observador {
 
   /**
    * Metodo que actualiza el estado de los observadores.
+   * 
    * @throws IOException 
    */
-  void actualizar() throws IOException;
+  void actualizar(ServicioStreaming s) throws IOException;
 }
