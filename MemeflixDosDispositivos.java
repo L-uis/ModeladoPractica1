@@ -5,7 +5,6 @@
  * @author Mata
  * @author Hermes
  * @author Steve
- * 
  */
 public class MemeflixDosDispositivos implements CobroMemeflix{
   
@@ -31,6 +30,7 @@ public class MemeflixDosDispositivos implements CobroMemeflix{
       return RECHAZADO;
       
     }
+    
   }
 
 }

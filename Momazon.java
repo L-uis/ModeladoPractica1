@@ -8,9 +8,6 @@ import java.util.Random;
  * @author Mata
  * @author Hermes
  * @author Steve
- * 
- * @version Febrero 2024
- * 
  */
 public class Momazon implements ServicioStreaming{
 
@@ -30,7 +27,7 @@ public class Momazon implements ServicioStreaming{
 
   /**
    * Constructor de la clase Momazon, inicializa las listas, anade
-   * la SSucripcion normal de Momazon Prime Video y Sucripcion premium de Momazon Prime Vide
+   * la Suscripcion normal de Momazon Prime Video y Sucripcion premium de Momazon Prime Vide
    * a la lista de tiposDeSuscripvion.
    */
   public Momazon(){
@@ -319,6 +316,7 @@ public class Momazon implements ServicioStreaming{
         return false;
 
       }
+
     }
 
   }

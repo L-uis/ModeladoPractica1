@@ -6,7 +6,6 @@ import java.io.IOException;
  * @author Mata
  * @author Hermes
  * @author Steve
- * 
  */
 public interface Observador {
 
@@ -16,4 +15,5 @@ public interface Observador {
    * @throws IOException 
    */
   void actualizar(ServicioStreaming s) throws IOException;
+  
 }

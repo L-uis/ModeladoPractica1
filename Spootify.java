@@ -8,9 +8,6 @@ import java.util.Random;
  * @author Mata
  * @author Hermes
  * @author Steve
- * 
- * @version Febrero 2024
- * 
  */
 public class Spootify implements ServicioStreaming{
   
@@ -229,8 +226,7 @@ public class Spootify implements ServicioStreaming{
   }
   /**
    * Clase auxiliar Suscriptor, esta clase es usada para guardar los datos de antiguedad y
-   * el tipo de suscriptor de un cliente
-   * 
+   * el tipo de suscriptor de un cliente 
    */
   public class Suscriptor{
 
@@ -319,6 +315,7 @@ public class Spootify implements ServicioStreaming{
         return false;
 
       }
+      
     }
 
   }

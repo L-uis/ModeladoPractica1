@@ -5,7 +5,6 @@
  * @author Mata
  * @author Hermes
  * @author Steve
- * 
  */
 public class HVOPrueba implements CobroHVO{
 
@@ -30,6 +29,7 @@ public class HVOPrueba implements CobroHVO{
       return RECHAZADO;
       
     }
+    
   }
   
 }

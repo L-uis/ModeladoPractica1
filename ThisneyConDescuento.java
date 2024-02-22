@@ -5,7 +5,6 @@
  * @author Mata
  * @author Hermes
  * @author Steve
- * 
  */
 public class ThisneyConDescuento implements CobroThisney{
 

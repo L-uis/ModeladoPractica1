@@ -8,6 +8,7 @@ import java.io.IOException;
  * de los servicios.
  * Usa el patrón Strategy para definir diferentes tipos de suscripción para cada servicio.
  * Genera un archivo txt con el registro de cada cliente al final de la simulación.
+ * 
  * @author Mata
  * @author Hermes
  * @author Steve
@@ -16,6 +17,7 @@ public class Simulacion {
 
   /**
    * Metodo principal que ejecuta la simulación.
+   * 
    * @throws IOException Si ocurre un error al generar los archivos txt.
    */
   public static void main(String[] args) throws IOException {
@@ -104,7 +106,7 @@ public class Simulacion {
     Cliente fausto = new Cliente("Fausto", 5000);
 
     /**
-     *  Primer mes.
+     * Primer mes.
      * 
      * Alicia se suscribe a todos los servicios.
      * Bob contrata todos los servicios con la version mas cara.
@@ -299,7 +301,6 @@ public class Simulacion {
 
     /**
      * Octavo mes
-     * 
      */
     alicia.anadirRegistro("\n" + meses[contador] + "\n");
     bob.anadirRegistro("\n" + meses[contador] + "\n");
@@ -396,5 +397,7 @@ public class Simulacion {
     cesar.generarRegistro();
     erika.generarRegistro();
     fausto.generarRegistro();
+
   }
+  
 }

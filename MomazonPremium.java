@@ -5,7 +5,6 @@
  * @author Mata
  * @author Hermes
  * @author Steve
- * 
  */
 public class MomazonPremium implements CobroMomazon{
   
@@ -31,7 +30,7 @@ public class MomazonPremium implements CobroMomazon{
       return RECHAZADO;
       
     }
-    
+
   }
   
 }

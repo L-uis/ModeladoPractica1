@@ -27,4 +27,5 @@ public interface Sujeto {
    * Metodo que notificara a los suscriptores de los cambios en el sujeto.
    */
   void notificar();
+  
 }

@@ -9,6 +9,7 @@ import java.util.LinkedList;
  * el registro.
  * Tiene métodos para agregar o eliminar suscripciones, cambiar el tipo de suscripción, 
  * descontar el saldo, ver la recomendación, generar el registro y actualizar el estado.
+ * 
  * @author Mata
  * @author Hermes
  * @author Steve

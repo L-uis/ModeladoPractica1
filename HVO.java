@@ -9,6 +9,7 @@ import java.util.Random;
  * Usa la interface CobroHVO para realizar los cobros a los clientes según el 
  * tipo de suscripción.
  * Usa la clase Suscriptor para almacenar la información de clientes y su suscripcion.
+ * 
  * @author Mata
  * @author Hermes
  * @author Steve
@@ -56,6 +57,7 @@ public class HVO implements ServicioStreaming{
    * suscriptores activos y se le da la bienvenida.
    * Si el cliente estaba suscrito pero inactivo, se le reactiva la suscripción 
    * y se le da la bienvenida de vuelta.
+   * 
    * @param cliente El cliente que se quiere registrar.
    * @param tipoDeSuscripcion El tipo de suscripción que el cliente elige.
    * @throws IllegalArgumentException Si el tipo de suscripción es inválido.
@@ -98,6 +100,7 @@ public class HVO implements ServicioStreaming{
    * activos y se le añade a la lista de suscriptores inactivos.
    * Se le desactiva la suscripción de prueba si la tenía y se le despide con un mensaje.
    * Si el cliente no estaba suscrito, se le informa con otro mensaje.
+   * 
    * @param cliente El cliente que se quiere remover.
    */
   @Override
@@ -185,6 +188,7 @@ public class HVO implements ServicioStreaming{
    * Metodo que devuelve el valor del cobro al cliente según el tipo de suscripción.
    * Usa la interface CobroHVO para delegar la responsabilidad del cobro a una clase 
    * que la implemente.
+   * 
    * @param cliente El cliente al que se le cobra el servicio.
    * @return El estado del cobro, si fue exitoso o rechazado.
    */
@@ -229,6 +233,7 @@ public class HVO implements ServicioStreaming{
    * Metodo que devuelve la recomendación del mes de la plataforma.
    * Usa la lista de recomendaciones para elegir una al azar y la asigna a la variable 
    * recomendacionDelMes.
+   * 
    * @return La recomendación del mes en forma de cadena.
    */
   @Override
@@ -254,6 +259,7 @@ public class HVO implements ServicioStreaming{
 
   /**
    * Metodo que anade una recomendacion a la lista de recomendaciones de la plataforma.
+   * 
    * @param recomendacion La recomendacion que se quiere anadir.
    */
   @Override
@@ -268,6 +274,7 @@ public class HVO implements ServicioStreaming{
    * Si el tipo de suscripcion es valido, se actualiza el tipo de suscripcion del cliente 
    * y se le informa con un mensaje.
    * Si el tipo de suscripcion es invalido, se lanza una excepcion.
+   * 
    * @param cliente El cliente que quiere cambiar su tipo de suscripcion.
    * @param tipoDeSuscripcion El nuevo tipo de suscripcion que el cliente elige.
    * @throws IllegalArgumentException Si el tipo de suscripcion es invalido.
@@ -315,6 +322,7 @@ public class HVO implements ServicioStreaming{
     /**
      * Contructor de la clase Suscriptor que se usa para buscar un suscriptor que tenga
      * al mismo cliente.
+     * 
      * @param cliente El cliente que sera buscado.
      */
     public Suscriptor(Cliente cliente){
@@ -343,6 +351,7 @@ public class HVO implements ServicioStreaming{
 
     /**
      * Metodo que devuelve el cliente asociado al suscriptor.
+     * 
      * @return El cliente del suscriptor.
      */
     private Cliente getCliente(){
@@ -353,6 +362,7 @@ public class HVO implements ServicioStreaming{
 
     /**
      * Metodo que devuelve el tipo de suscripcion del suscriptor.
+     * 
      * @return El tipo de suscripcion del suscriptor.
      */
     public String getTipoDeSuscripcion(){
@@ -363,6 +373,7 @@ public class HVO implements ServicioStreaming{
 
     /**
      * Metodo que devuelve la antiguedad del suscriptor en meses.
+     * 
      * @return La antiguedad del suscriptor.
      */
     public int getAntiguedad(){
@@ -373,6 +384,7 @@ public class HVO implements ServicioStreaming{
 
     /**
      * Metodo que devuelve si el suscriptor tiene o no una suscripcion de prueba.
+     * 
      * @return true si el suscriptor tiene una suscripcion de prueba, false en caso contrario.
      */
     public boolean getSuscripcionDePrueba(){
@@ -383,6 +395,7 @@ public class HVO implements ServicioStreaming{
 
     /**
      * Metodo que cambia el tipo de suscripcion del suscriptor por otro diferente.
+     * 
      * @param cadena El nuevo tipo de suscripcion del suscriptor.
      */
     public void setTipoDeSuscripcion(String cadena){
@@ -419,6 +432,7 @@ public class HVO implements ServicioStreaming{
      * Metodo que compara si dos objetos son iguales.
      * Dos objetos son iguales si son instancias de la clase Suscriptor y tienen 
      * el mismo cliente.
+     * 
      * @param obj El objeto con el que se quiere comparar.
      * @return true si los objetos son iguales, false en caso contrario.
      */
@@ -442,6 +456,9 @@ public class HVO implements ServicioStreaming{
         return false;
         
       }
+
     }
+
   }
+  
 }

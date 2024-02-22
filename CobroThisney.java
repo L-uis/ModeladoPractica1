@@ -5,7 +5,6 @@
  * @author Mata
  * @author Hermes
  * @author Steve
- * 
  */
 public interface CobroThisney {
 
@@ -16,4 +15,5 @@ public interface CobroThisney {
    * @return el estado del cobro.
    */
   String cobro(Cliente cliente);
+  
 }

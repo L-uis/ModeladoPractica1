@@ -5,7 +5,6 @@
  * @author Mata
  * @author Hermes
  * @author Steve
- * 
  */
 public class HVONormal implements CobroHVO{
 
@@ -34,5 +33,4 @@ public class HVONormal implements CobroHVO{
 
   }
 
-  
 }
