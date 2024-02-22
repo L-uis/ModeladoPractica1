@@ -65,9 +65,7 @@ public class Thisney implements ServicioStreaming{
       
       suscriptoresActivos.add(suscriptor);
 
-      Cliente clienteActual = suscriptor.getCliente();
-
-      clienteActual.anadirRegistro(clienteActual.getNombre() + " bienvenido a " + NOMBRE_DE_LA_PLATAFORMA);
+      cliente.anadirRegistro(cliente.getNombre() + " bienvenido a " + NOMBRE_DE_LA_PLATAFORMA);
 
     } else if (suscriptoresInactivos.contains(suscriptor)) {
 
@@ -75,9 +73,7 @@ public class Thisney implements ServicioStreaming{
 
       suscriptoresInactivos.remove(suscriptor);
 
-      Cliente clienteActual = suscriptor.getCliente();
-
-      clienteActual.anadirRegistro("Bienvenido de vuelta " + clienteActual.getNombre());
+      cliente.anadirRegistro("Bienvenido de vuelta " + cliente.getNombre());
     }
   
   }
@@ -164,9 +160,11 @@ public class Thisney implements ServicioStreaming{
     
     String tipoSuscripcion = suscriptor.getTipoDeSuscripcion();
     
-    if (suscriptor.verDescuento() && suscriptor.getAntiguedad() == 3) {
+    if (tipoSuscripcion.equals("Sucripcion con descuento de Thisney+") && !suscriptor.verDescuento()) {
       
       suscriptor.setTipoDeSuscripcion("Sucripcion normal de Thisney+");
+
+      tipoSuscripcion = suscriptor.getTipoDeSuscripcion();
 
       String actualizacion = "Tus meses con descuento han terminado, tu nueva suscripcion es: Sucripcion normal de Thisney+";
 
@@ -282,47 +280,92 @@ public class Thisney implements ServicioStreaming{
       this.tipoSuscripcion = tipoSuscripcion;
 
       this.antiguedad = 0;
+
+      this.descuento = true;
     }
 
+    /**
+     * Metodo que devuelve el cliente que tiene una suscripcion a HVO Max
+     * 
+     * @return El cliente que tiene la suscripcion.
+     */
     private Cliente getCliente(){
 
       return this.cliente;
       
     }
 
+    /**
+     * Metodo que devuelve el tipo de suscripcion del suscriptor.
+     *  
+     * @return El tipo de suscripcion.
+     */
     public String getTipoDeSuscripcion(){
 
       return this.tipoSuscripcion;
     
     }
 
+    /**
+     * Metodo que devuelve la antiguedad del suscriptor.
+     * 
+     * @return La antiguedad del suscriptor.
+     */
     public int getAntiguedad(){
 
       return this.antiguedad;
 
     }
 
+    /**
+     * Metodo que cambia el tipo de suscripcion del suscriptor.
+     * Thisney+
+Alicia a pagado 130.0 a Thisney+ por : Sucripcion con descuento de Thisney+
+Alicia llevas suscrito a Thisney+ 3 meses
+Thisney+ te recomienda: The Mandalorian
+     * @param cadena El nuevo tipo de suscripcion.
+     */
     public void setTipoDeSuscripcion(String cadena){
 
       this.tipoSuscripcion = cadena;
 
     }
 
+    /**
+     * Metodo que aumenta la antiguedad del suscriptor en 1.
+     * Si la antiguedad llega a 3 se desactiva la suscripcion
+     * con descuento.
+     */
+    public void aumentarAntiguedad(){
+
+      antiguedad++;
+
+      if (antiguedad == 3) {
+
+        quitarDescuento();
+
+      }
+
+    }
+
+    /**
+     * Metodo que desactiva la suscripcion con descuento al suscriptor.
+     */
     public void quitarDescuento(){
 
       descuento = false;
 
     }
 
+    /**
+     * Metodo que devuelve el estado de la suscripcion.
+     * 
+     * @return descuentotrue si el suscriptor cuenta con una suscripcion con descuento
+     * false si es suscriptor no cuenta con una suscripcion con descuento.
+     */
     public boolean verDescuento(){
 
       return descuento;
-
-    }
-
-    public void aumentarAntiguedad(){
-
-      antiguedad++;
 
     }
 

@@ -9,22 +9,23 @@
 public interface Sujeto {
 
   /**
-   * Metodo que agrega a un suscriptor a la lista del sujeto.
+   * Metodo que agrega a un cliente a la lista del sujeto.
    * 
-   * @param s suscriptor que sera agregado a la lista.
-   * @param tipoDeSuscripcion 
+   * @param cliente cliente que sera agregado a la lista.
+   * @param tipoDeSuscripcion Tipo de suscripcion con la que se registrara al cliente.
    */
   void registrar(Cliente cliente, String tipoDeSuscripcion);
 
   /**
-   * Metodo que remueve a un suscriptor de la lista del sujeto.
+   * Metodo que remueve a un cliente de la lista del sujeto.
    * 
-   * @param s suscriptor que sera removido de la lista.
+   * @param cliente cliente que sera removido de la lista.
    */
   void remover(Cliente cliente);
 
   /**
-   * Metodo que notificara a los suscriptores de los cambios en el sujeto.
+   * Metodo que notificara a los clientes de los cambios en el sujeto.
    */
   void notificar();
+
 }

@@ -15,4 +15,5 @@ public interface CobroMomazon {
    * @return el estado del cobro.
    */
   String cobro(Cliente cliente);
+  
 }

@@ -15,4 +15,5 @@ public interface CobroSpootify {
    * @return el estado del cobro.
    */
   String cobro(Cliente cliente);
+  
 }

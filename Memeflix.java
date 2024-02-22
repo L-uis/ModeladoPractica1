@@ -66,9 +66,7 @@ public class Memeflix implements ServicioStreaming{
       
       suscriptoresActivos.add(suscriptor);
 
-      Cliente clienteActual = suscriptor.getCliente();
-
-      clienteActual.anadirRegistro(clienteActual.getNombre() + " bienvenido a " + NOMBRE_DE_LA_PLATAFORMA);
+      cliente.anadirRegistro(cliente.getNombre() + " bienvenido a " + NOMBRE_DE_LA_PLATAFORMA);
 
     } else if (suscriptoresInactivos.contains(suscriptor)) {
 
@@ -76,9 +74,7 @@ public class Memeflix implements ServicioStreaming{
 
       suscriptoresInactivos.remove(suscriptor);
 
-      Cliente clienteActual = suscriptor.getCliente();
-
-      clienteActual.anadirRegistro("Bienvenido de vuelta " + clienteActual.getNombre());
+      cliente.anadirRegistro("Bienvenido de vuelta " + cliente.getNombre());
     }
 
   }
@@ -275,30 +271,53 @@ public class Memeflix implements ServicioStreaming{
       this.antiguedad = 0;
     }
 
+    /**
+     * Metodo que devuelve el cliente que tiene una suscripcion a Memeflix.
+     * 
+     * @return El cliente que tiene la suscripcion.
+     */
     private Cliente getCliente(){
 
       return this.cliente;
       
     }
 
+    /**
+     * Metodo que devuelve el tipo de suscripcion del suscriptor.
+     *  
+     * @return El tipo de suscripcion.
+     */
     public String getTipoDeSuscripcion(){
 
       return this.tipoSuscripcion;
     
     }
 
+    /**
+     * Metodo que devuelve la antiguedad del suscriptor.
+     * 
+     * @return La antiguedad del suscriptor.
+     */
     public int getAntiguedad(){
 
       return this.antiguedad;
 
     }
 
+    /**
+     * Metodo que cambia el tipo de suscripcion del suscriptor.
+     * 
+     * @param cadena El nuevo tipo de suscripcion.
+     */
     public void setTipoDeSuscripcion(String cadena){
 
       this.tipoSuscripcion = cadena;
 
     }
 
+    /**
+     * Metodo que aumenta la antiguedad del suscriptor en 1.
+     */
     public void aumentarAntiguedad(){
 
       antiguedad++;

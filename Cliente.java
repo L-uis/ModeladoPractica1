@@ -1,5 +1,7 @@
+
 import java.io.IOException;
 import java.util.LinkedList;
+
 /**
  * Clase que simula un cliente.
  * 
@@ -12,7 +14,7 @@ public class Cliente implements Observador{
 
   private String nombre;
 
-  private double saldo;
+  private Banco banco;
 
   private LinkedList<ServicioStreaming> servicios;
 
@@ -30,11 +32,12 @@ public class Cliente implements Observador{
 
     this.nombre = nombre;
 
-    this.saldo = saldo;
-
     this.servicios = new LinkedList<ServicioStreaming>();
     
     this.registro = new Registro(nombre);
+
+    this.banco = new Banco(this, saldo);
+
   }
 
   /**
@@ -53,7 +56,7 @@ public class Cliente implements Observador{
   /**
    * Metodo que desuscribe al suscriptor de un servicio de streaming.
    * 
-   * @param servicio
+   * @param servicio El servicio al que el cliente se desuscrivira.
    */
   public void eliminarSuscripcion(ServicioStreaming servicio){
 
@@ -63,15 +66,27 @@ public class Cliente implements Observador{
   
   }
 
+  /**
+   * Metodo que devuelve el nombre del cliente.
+   * 
+   * @return El nombre del cliente.
+   */
   public String getNombre(){
   
     return this.nombre;
   
   }
 
+  /**
+   * Metodo que devuelve el saldo de la cuenta de banco del cliente.
+   * 
+   * @return El saldo de la cuenta.
+   */
   public double getSaldo(){
 
-    return this.saldo;
+    double saldo = banco.getSaldo();
+
+    return saldo;
 
   }
 
@@ -82,22 +97,67 @@ public class Cliente implements Observador{
    */
   public void descontarSaldo(double pago){
 
-    this.saldo -= pago;
+    banco.hacerPago(pago);
   
   }
 
+  /**
+   * Metodo que anade una cadena al registro del cliente.
+   * 
+   * @param cadena La caedna que sera agregada.
+   */
   public void anadirRegistro(String cadena){
 
     registro.anadirRegistro(cadena);
   
   }
 
+  /**
+   * Metodo que genera un archivo TXT con el nopmbre del cliente,
+   * este archivo contiene el registro de todas las acciones del
+   * cliente con respecto a los servicios de streaming.
+   * 
+   */
   public void generarRegistro(){
+
     try {
+
       registro.escribirTXT();
+
     } catch (IOException e) {
+
       System.out.println("Error: " + e);
+
     }
+
+  }
+
+  /**
+   * Metodo que desuscrive al cliente de todas sus suscripciones activas.
+   * 
+   */
+  public void eliminarTodasLasSuscripciones() {
+
+    for (ServicioStreaming servicioStreaming : servicios) {
+
+      servicioStreaming.remover(this);
+      
+    }
+
+    servicios = new LinkedList<ServicioStreaming>();
+    
+  }
+
+  /**
+   * Metodo que cambia el tipo de suscripcion del cliente en un servicio de streaming.
+   * 
+   * @param servicio Servicio donde se canbiara el tipo de suscripcion.
+   * @param tipoDeSuscripcion Cadena con el nuevo tipo de suscripcion del cliente.
+   */
+  public void cambiarSuscripcion(ServicioStreaming servicio, String tipoDeSuscripcion) {
+
+    servicio.cambiarSuscripcion(this, tipoDeSuscripcion);
+
   }
 
   @Override
@@ -113,24 +173,6 @@ public class Cliente implements Observador{
 
     registro.anadirRegistro(this.recomendacion);
   
-  }
-
-  public void eliminarTodasLasSuscripciones() {
-
-    for (ServicioStreaming servicioStreaming : servicios) {
-
-      servicioStreaming.remover(this);
-      
-    }
-
-    servicios = new LinkedList<ServicioStreaming>();
-    
-  }
-
-  public void cambiarSuscripcion(ServicioStreaming servicio, String tipoDeSuscripcion) {
-
-    servicio.cambiarSuscripcion(this, tipoDeSuscripcion);
-
   }
 
 }

@@ -64,9 +64,7 @@ public class HVO implements ServicioStreaming{
       
       suscriptoresActivos.add(suscriptor);
 
-      Cliente clienteActual = suscriptor.getCliente();
-
-      clienteActual.anadirRegistro(clienteActual.getNombre() + " bienvenido a " + NOMBRE_DE_LA_PLATAFORMA);
+      cliente.anadirRegistro(cliente.getNombre() + " bienvenido a " + NOMBRE_DE_LA_PLATAFORMA);
 
     } else if (suscriptoresInactivos.contains(suscriptor)) {
 
@@ -74,9 +72,8 @@ public class HVO implements ServicioStreaming{
 
       suscriptoresInactivos.remove(suscriptor);
 
-      Cliente clienteActual = suscriptor.getCliente();
+      cliente.anadirRegistro("Bienvenido de vuelta " + cliente.getNombre());
 
-      clienteActual.anadirRegistro("Bienvenido de vuelta " + clienteActual.getNombre());
     }
 
   }
@@ -288,46 +285,82 @@ public class HVO implements ServicioStreaming{
       this.suscripcionDePrueba = true;
     }
 
+    /**
+     * Metodo que devuelve el cliente que tiene una suscripcion a HVO Max
+     * 
+     * @return El cliente que tiene la suscripcion.
+     */
     private Cliente getCliente(){
 
       return this.cliente;
       
     }
 
+    /**
+     * Metodo que devuelve el tipo de suscripcion del suscriptor.
+     *  
+     * @return El tipo de suscripcion.
+     */
     public String getTipoDeSuscripcion(){
 
       return this.tipoSuscripcion;
     
     }
 
+    /**
+     * Metodo que devuelve la antiguedad del suscriptor.
+     * 
+     * @return La antiguedad del suscriptor.
+     */
     public int getAntiguedad(){
 
       return this.antiguedad;
 
     }
 
+    /**
+     * Metodo que devuelve el estado de la suscripcion de pueba.
+     * 
+     * @return true si el suscriptor aun tiene la suscripcion de prueba, false si el suscriptor ya no tiene la suscripcion de prueba.
+     */
     public boolean getSuscripcionDePrueba(){
 
       return suscripcionDePrueba;
 
     }
 
+    /**
+     * Metodo que cambia el tipo de suscripcion del suscriptor.
+     * 
+     * @param cadena El nuevo tipo de suscripcion.
+     */
     public void setTipoDeSuscripcion(String cadena){
 
       this.tipoSuscripcion = cadena;
 
     }
 
+    /**
+     * Metodo que aumenta la antiguedad del suscriptor en 1,
+     * si la antiguedad llega a tres se desactiva la suscripcion
+     * de prueba.
+     */
     public void aumentarAntiguedad(){
 
       antiguedad++;
 
       if (antiguedad == 3) {
+
         desactivarSuscripcionDePrueba();
+        
       }
 
     }
 
+    /**
+     * Metodo que desactiva la suscripcion de prueba cambiando la
+     * variable suscripcionDePrueba a false.
+     */
     public void desactivarSuscripcionDePrueba(){
 
       suscripcionDePrueba = false;

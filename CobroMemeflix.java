@@ -15,4 +15,5 @@ public interface CobroMemeflix {
    * @return el estado del cobro.
    */
   String cobro(Cliente cliente);
+  
 }
