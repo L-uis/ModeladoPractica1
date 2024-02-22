@@ -29,5 +29,14 @@ public interface ServicioStreaming extends Sujeto{
    * @param recomendacion La recomendacion que sera anadida.
    */
   void anadirRecomendacion(String recomendacion);
+
+
+  /**
+   * Metodo que cambia el tipo de suscripcion de un cliente.
+   * 
+   * @param cliente El cliente que cambiara su tipo de suscripcion.
+   * @param tipoDeSuscripcion El tipo de suscripcion nuevo.
+   */
+  void cambiarSuscripcion(Cliente cliente, String tipoDeSuscripcion);
   
 }
