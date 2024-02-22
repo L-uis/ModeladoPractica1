@@ -7,13 +7,13 @@
  * @author Steve
  * 
  */
-public class ThisneySinDescuento implements CobroThisney{
+public class ThisneyNormal implements CobroThisney{
 
   private final double MONTO = 160.00;
 
   private final String RECHAZADO = "El pago a sido rechazado, se cancelara la suscripcion del servicio";
 
-  private final String APROVADO = " a pagado " + MONTO + " a Thisney+ por : Sucripcion sin descuento de Thisney+";
+  private final String APROVADO = " a pagado " + MONTO + " a Thisney+ por : Sucripcion normal de Thisney+";
 
   @Override
   public String cobro(Cliente suscriptor) {

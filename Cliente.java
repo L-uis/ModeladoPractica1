@@ -55,11 +55,8 @@ public class Cliente implements Observador{
    */
   public void eliminarSuscripcion(ServicioStreaming servicio){
 
-    int posicion;
-
-    posicion = servicios.indexOf(servicio);
+    servicio.remover(this);
   
-    servicios.remove(posicion);
   }
 
   public String getNombre(){
