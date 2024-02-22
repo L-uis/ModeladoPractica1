@@ -1,3 +1,5 @@
+import Memeflix.Suscriptor;
+
 /**
  * Interface que implementa el patron observer.
  * 
@@ -21,7 +23,7 @@ public interface Sujeto {
    * 
    * @param s suscriptor que sera removido de la lista.
    */
-  void remover(Cliente cliente);
+  void remover(Cliente cliente, String tipoDeSuscripcion);
 
   /**
    * Metodo que notificara a los suscriptores de los cambios en el sujeto.

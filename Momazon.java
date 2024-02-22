@@ -61,8 +61,12 @@ public class Momazon implements ServicioStreaming{
     }
   }
 
-  public void remover(Cliente s){
-
+  public void remover(Cliente c, String tipoDeSuscripcion){
+      Suscriptor suscriptor = new Suscriptor(c,tipoDeSuscripcion);
+    if(suscriptoresActivos.contains(suscriptor)){
+        suscriptoresActivos.remove(suscriptor);
+        suscriptoresInactivos.add(suscriptor);
+    }
   }
 
   public void notificar(){
@@ -70,7 +74,41 @@ public class Momazon implements ServicioStreaming{
   }
 
   @Override
-  public void cobro(Cliente suscriptor) {
+  public void cobro(Cliente cliente) {
+    Suscriptor buscaSuscriptor = new Suscriptor(cliente);
+
+    int indiceDelSuscriptor = suscriptoresActivos.indexOf(buscaSuscriptor);
+
+    Suscriptor suscriptor = suscriptoresActivos.get(indiceDelSuscriptor); 
+    
+    String tipoSuscripcion = suscriptor.getTipoSuscripcion();
+    
+    if (tipoSuscripcion.equals("Sucripcion de Momazon normal")){
+      
+      cobro = new MomazonNormal();
+
+    }if (tipoSuscripcion.equals("Sucripcion de Momazon premium")) {
+      
+      cobro = new MomazonPremium();
+    }
+    
+    String estadoDelCobro = cobro.cobro(cliente);
+
+    String rechazado = "El pago a sido rechazado, se cancelara la suscripcion del servicio";
+
+    if (estadoDelCobro.equals(rechazado)) {
+
+      cliente.anadirRegistro(rechazado);
+      
+      suscriptor.setTipoDeSuscripcion("Inactivo");
+
+      this.remover(cliente);
+
+    } else {
+
+      cliente.anadirRegistro(estadoDelCobro);
+
+    }
     
   }
 
@@ -124,7 +162,7 @@ public class Momazon implements ServicioStreaming{
     
     }
 
-    public void setTipoSuscripcion(String cadena){
+    public void setTipoDeSuscripcion(String cadena){
 
       this.tipoSuscripcion = cadena;
 
