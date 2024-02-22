@@ -1,5 +1,6 @@
 
 import java.util.LinkedList;
+import java.util.Random;
 
 /**
  * Clase que simula la plataforma HVO Max.
@@ -23,8 +24,6 @@ public class HVO implements ServicioStreaming{
 
   private LinkedList<String> recomendaciones;
 
-  private int contadorDeRecomendaciones;
-
   private String recomendacionDelMes;
 
   private CobroHVO cobro;
@@ -47,8 +46,6 @@ public class HVO implements ServicioStreaming{
     tiposDeSuscripcion.add("Suscripcion de prueba de HVO Max");
 
     tiposDeSuscripcion.add("Suscripcion normal de HVO Max");
-
-    contadorDeRecomendaciones = 0;
 
   }
 
@@ -119,7 +116,7 @@ public class HVO implements ServicioStreaming{
 
       Cliente cliente = suscriptor.getCliente();    
 
-      cliente.anadirRegistro(NOMBRE_DE_LA_PLATAFORMA);
+      cliente.anadirRegistro("\n" + NOMBRE_DE_LA_PLATAFORMA);
 
       String estadoDelCobro = this.cobro(cliente);
 
@@ -170,6 +167,8 @@ public class HVO implements ServicioStreaming{
       
       suscriptor.setTipoDeSuscripcion("Suscripcion normal de HVO Max");
 
+      tipoSuscripcion = suscriptor.getTipoDeSuscripcion();
+
       String actualizacion = "Tu periodo de prueva a terminado, tu nueva suscripcion es: Suscripcion normal de HVO Max";
 
       cliente.anadirRegistro(actualizacion);
@@ -199,18 +198,14 @@ public class HVO implements ServicioStreaming{
 
     }else{
 
-      contadorDeRecomendaciones++;
-      
-      if (contadorDeRecomendaciones == recomendaciones.size()) {
+      Random random = new Random();
 
-        contadorDeRecomendaciones = 0;
-        
-      }
+      int numeroAleatorio = random.nextInt(recomendaciones.size()); 
 
-      recomendacionDelMes = recomendaciones.get(contadorDeRecomendaciones);
+      recomendacionDelMes = NOMBRE_DE_LA_PLATAFORMA + " te recomienda: " +recomendaciones.get(numeroAleatorio);
 
       return recomendacionDelMes;
-    
+
     }
 
   }
@@ -220,6 +215,31 @@ public class HVO implements ServicioStreaming{
 
     recomendaciones.add(recomendacion);
 
+  }
+
+  @Override
+  public void cambiarSuscripcion(Cliente cliente, String tipoDeSuscripcion) {
+
+    if (!tiposDeSuscripcion.contains(tipoDeSuscripcion)) {
+
+      throw new IllegalArgumentException("Tipo de suscripcion invalido");
+
+    }
+
+    Suscriptor buscaSuscriptor = new Suscriptor(cliente);
+
+    int indiceDelSuscriptor = suscriptoresActivos.indexOf(buscaSuscriptor);
+
+    Suscriptor suscriptor = suscriptoresActivos.get(indiceDelSuscriptor);
+
+    String antiguoTipoDeSusCripcion = suscriptor.getTipoDeSuscripcion();
+
+    suscriptor.setTipoDeSuscripcion(tipoDeSuscripcion);
+
+    String registro = "Se a cambiado tu tipo de suscripcion de " + antiguoTipoDeSusCripcion + " a " + tipoDeSuscripcion;
+
+    cliente.anadirRegistro(registro);
+ 
   }
 
   /**
@@ -264,6 +284,8 @@ public class HVO implements ServicioStreaming{
       this.tipoSuscripcion = tipoSuscripcion;
 
       this.antiguedad = 0;
+
+      this.suscripcionDePrueba = true;
     }
 
     private Cliente getCliente(){
@@ -299,6 +321,10 @@ public class HVO implements ServicioStreaming{
     public void aumentarAntiguedad(){
 
       antiguedad++;
+
+      if (antiguedad == 3) {
+        desactivarSuscripcionDePrueba();
+      }
 
     }
 

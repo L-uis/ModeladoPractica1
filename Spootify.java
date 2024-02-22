@@ -1,5 +1,6 @@
 
 import java.util.LinkedList;
+import java.util.Random;
 
 /**
  * Clase que simula la plataforma Spootify.
@@ -23,8 +24,6 @@ public class Spootify implements ServicioStreaming{
 
   private LinkedList<String> recomendaciones;
 
-  private int contadorDeRecomendaciones;
-
   private String recomendacionDelMes;
 
   private CobroSpootify cobro;
@@ -47,8 +46,6 @@ public class Spootify implements ServicioStreaming{
     tiposDeSuscripcion.add("Sucripcion gratis de Spootify");
 
     tiposDeSuscripcion.add("Sucripcion premium de Spootify");
-
-    contadorDeRecomendaciones = 0;
 
   }
 
@@ -118,7 +115,7 @@ public class Spootify implements ServicioStreaming{
 
       Cliente cliente = suscriptor.getCliente();    
 
-      cliente.anadirRegistro(NOMBRE_DE_LA_PLATAFORMA);
+      cliente.anadirRegistro("\n" + NOMBRE_DE_LA_PLATAFORMA);
 
       String estadoDelCobro = this.cobro(cliente);
 
@@ -187,15 +184,11 @@ public class Spootify implements ServicioStreaming{
 
     }else{
 
-      contadorDeRecomendaciones++;
-      
-      if (contadorDeRecomendaciones == recomendaciones.size()) {
+      Random random = new Random();
 
-        contadorDeRecomendaciones = 0;
-        
-      }
+      int numeroAleatorio = random.nextInt(recomendaciones.size()); 
 
-      recomendacionDelMes = recomendaciones.get(contadorDeRecomendaciones);
+      recomendacionDelMes = NOMBRE_DE_LA_PLATAFORMA + " te recomienda: " +recomendaciones.get(numeroAleatorio);
 
       return recomendacionDelMes;
     
@@ -208,6 +201,31 @@ public class Spootify implements ServicioStreaming{
 
     recomendaciones.add(recomendacion);
 
+  }
+  
+  @Override
+  public void cambiarSuscripcion(Cliente cliente, String tipoDeSuscripcion) {
+
+    if (!tiposDeSuscripcion.contains(tipoDeSuscripcion)) {
+
+      throw new IllegalArgumentException("Tipo de suscripcion invalido");
+
+    }
+
+    Suscriptor buscaSuscriptor = new Suscriptor(cliente);
+
+    int indiceDelSuscriptor = suscriptoresActivos.indexOf(buscaSuscriptor);
+
+    Suscriptor suscriptor = suscriptoresActivos.get(indiceDelSuscriptor);
+
+    String antiguoTipoDeSusCripcion = suscriptor.getTipoDeSuscripcion();
+
+    suscriptor.setTipoDeSuscripcion(tipoDeSuscripcion);
+
+    String registro = "Se a cambiado tu tipo de suscripcion de " + antiguoTipoDeSusCripcion + " a " + tipoDeSuscripcion;
+
+    cliente.anadirRegistro(registro);
+ 
   }
   /**
    * Clase auxiliar Suscriptor, esta clase es usada para guardar los datos de antiguedad y

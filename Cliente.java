@@ -31,6 +31,8 @@ public class Cliente implements Observador{
     this.nombre = nombre;
 
     this.saldo = saldo;
+
+    this.servicios = new LinkedList<ServicioStreaming>();
     
     this.registro = new Registro(nombre);
   }
@@ -56,6 +58,8 @@ public class Cliente implements Observador{
   public void eliminarSuscripcion(ServicioStreaming servicio){
 
     servicio.remover(this);
+
+    servicios.remove(servicio);
   
   }
 
@@ -109,6 +113,24 @@ public class Cliente implements Observador{
 
     registro.anadirRegistro(this.recomendacion);
   
+  }
+
+  public void eliminarTodasLasSuscripciones() {
+
+    for (ServicioStreaming servicioStreaming : servicios) {
+
+      servicioStreaming.remover(this);
+      
+    }
+
+    servicios = new LinkedList<ServicioStreaming>();
+    
+  }
+
+  public void cambiarSuscripcion(ServicioStreaming servicio, String tipoDeSuscripcion) {
+
+    servicio.cambiarSuscripcion(this, tipoDeSuscripcion);
+
   }
 
 }
