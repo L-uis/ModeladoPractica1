@@ -1,33 +1,175 @@
 
-import java.io.IOException;
 import java.util.LinkedList;
 
 public class Thisney implements ServicioStreaming{
 
-  private String nombre;
+  private final String NOMBRE_DE_LA_PLATAFORMA = "Thisney+";
 
-  private LinkedList<Cliente> suscriptores;
+  private LinkedList<Suscriptor> suscriptoresActivos;
+
+  private LinkedList<Suscriptor> suscriptoresInactivos;
+
+  private LinkedList<String> tiposDeSuscripcion;
 
   private LinkedList<String> recomendaciones;
 
+  private int contadorDeRecomendaciones;
+
+  private String recomendacionDelMes;
+
   private CobroThisney cobro;
 
-  @Override
-  public void registrar(Cliente s, String tipoDeSuscripcion) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'registrar'");
+  public Thisney(){
+
+    suscriptoresActivos = new LinkedList<Suscriptor>();
+    
+    suscriptoresInactivos = new LinkedList<Suscriptor>();
+    
+    recomendaciones = new LinkedList<String>();
+    
+    tiposDeSuscripcion = new LinkedList<>();
+
+    tiposDeSuscripcion.add("Sucripcion con descuento de Thisney+");
+
+    tiposDeSuscripcion.add("Sucripcion normal de Thisney+");
+
+    contadorDeRecomendaciones = 0;
+
   }
 
-  public void remover(Cliente s){
+  @Override
+  public void registrar(Cliente cliente, String tipoDeSuscripcion) {
+    
+    if (!tiposDeSuscripcion.contains(tipoDeSuscripcion)) {
+
+      throw new IllegalArgumentException("Tipo de suscripcion invalido");
+
+    }
+
+    Suscriptor suscriptor = new Suscriptor(cliente, tipoDeSuscripcion);
+
+    if (!suscriptoresActivos.contains(suscriptor) && !suscriptoresInactivos.contains(suscriptor) ) {
+      
+      suscriptoresActivos.add(suscriptor);
+
+      Cliente clienteActual = suscriptor.getCliente();
+
+      clienteActual.anadirRegistro(clienteActual.getNombre() + " bienvenido a " + NOMBRE_DE_LA_PLATAFORMA);
+
+    } else if (suscriptoresInactivos.contains(suscriptor)) {
+
+      suscriptoresActivos.add(suscriptor);
+
+      suscriptoresInactivos.remove(suscriptor);
+
+      Cliente clienteActual = suscriptor.getCliente();
+
+      clienteActual.anadirRegistro("Bienvenido de vuelta " + clienteActual.getNombre());
+    }
+  
+  }
+
+  public void remover(Cliente cliente){
+
+    Suscriptor buscaSuscriptor = new Suscriptor(cliente);
+
+    if (suscriptoresActivos.contains(buscaSuscriptor)) {
+    
+      int indiceDelSuscriptor = suscriptoresActivos.indexOf(buscaSuscriptor);
+
+      Suscriptor suscriptor = suscriptoresActivos.get(indiceDelSuscriptor); 
+
+      suscriptoresActivos.remove(indiceDelSuscriptor);
+
+      suscriptoresInactivos.add(suscriptor);
+
+      suscriptor.quitarDescuento();
+
+      String mensajeDespedida = cliente.getNombre() + " lamentamos que dejes " + NOMBRE_DE_LA_PLATAFORMA;
+
+      cliente.anadirRegistro(mensajeDespedida);
+    
+    } else {
+
+      System.out.println("El cliente " + cliente.getNombre() + " no esta suscrito a " + NOMBRE_DE_LA_PLATAFORMA);
+
+    }
 
   }
 
   public void notificar(){
 
+    for (Suscriptor suscriptor : suscriptoresActivos) {
+
+      Cliente cliente = suscriptor.getCliente();    
+
+      cliente.anadirRegistro(NOMBRE_DE_LA_PLATAFORMA);
+
+      String estadoDelCobro = this.cobro(cliente);
+
+      String rechazado = "El pago a sido rechazado, se cancelara la suscripcion del servicio";
+
+      if (estadoDelCobro.equals(rechazado)) {
+
+        cliente.anadirRegistro(rechazado);
+      
+        suscriptor.setTipoDeSuscripcion("Inactivo");
+
+        this.remover(cliente);
+
+        break;
+
+      } else {
+
+        cliente.anadirRegistro(estadoDelCobro);
+
+      }
+
+      suscriptor.aumentarAntiguedad();
+
+      String mensajeDeAntiguedad = cliente.getNombre() + " llevas suscrito a " + NOMBRE_DE_LA_PLATAFORMA + " " + suscriptor.getAntiguedad() + " meses";
+
+      cliente.anadirRegistro(mensajeDeAntiguedad);
+
+      String recomendacion = this.getRecomendacion();
+
+      cliente.anadirRegistro(recomendacion);
+
+    }
   }
 
   @Override
-  public void cobro(Cliente suscriptor) {
+  public String cobro(Cliente cliente) {
+
+    Suscriptor buscaSuscriptor = new Suscriptor(cliente);
+
+    int indiceDelSuscriptor = suscriptoresActivos.indexOf(buscaSuscriptor);
+
+    Suscriptor suscriptor = suscriptoresActivos.get(indiceDelSuscriptor); 
+    
+    String tipoSuscripcion = suscriptor.getTipoDeSuscripcion();
+    
+    if (suscriptor.verDescuento() && suscriptor.getAntiguedad() == 3) {
+      
+      suscriptor.setTipoDeSuscripcion("Sucripcion normal de Thisney+");
+
+      String actualizacion = "Tus meses con descuento han terminado, tu nueva suscripcion es: Sucripcion normal de Thisney+";
+
+      cliente.anadirRegistro(actualizacion);
+
+    }
+
+    if (tipoSuscripcion.equals("Sucripcion con descuento de Thisney+")){
+      
+      cobro = new ThisneyConDescuento();
+
+    }if (tipoSuscripcion.equals("Sucripcion normal de Thisney+")) {
+      
+      cobro = new ThisneyNormal();
+
+    }
+
+    return cobro.cobro(cliente);
 
   }
 
@@ -37,9 +179,100 @@ public class Thisney implements ServicioStreaming{
     throw new UnsupportedOperationException("Unimplemented method 'getRecomendacion'");
   }
 
-  @Override
-  public String getNombre() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getNombre'");
+  public class Suscriptor {
+    
+    private int antiguedad;
+    
+    private String tipoSuscripcion;
+
+    private Cliente cliente;
+
+    private boolean descuento;
+
+    public Suscriptor(Cliente cliente){
+
+      this.cliente = cliente;
+
+    }
+
+    public Suscriptor(Cliente cliente, String tipoDeSuscripcion){
+
+      this.cliente = cliente;
+      
+      this.tipoSuscripcion = tipoDeSuscripcion;
+      
+      this.antiguedad = 0;
+
+      this.descuento = true;
+
+    }
+
+    private Cliente getCliente(){
+
+      return this.cliente;
+      
+    }
+
+    public String getTipoDeSuscripcion(){
+
+      return this.tipoSuscripcion;
+    
+    }
+
+    public int getAntiguedad(){
+
+      return this.antiguedad;
+
+    }
+
+    public void setTipoDeSuscripcion(String cadena){
+
+      this.tipoSuscripcion = cadena;
+
+    }
+
+    public void quitarDescuento(){
+
+      descuento = false;
+
+    }
+
+    public boolean verDescuento(){
+
+      return descuento;
+
+    }
+
+    public void aumentarAntiguedad(){
+
+      antiguedad++;
+
+    }
+
+    @Override
+    public boolean equals(Object obj){
+      
+      if (obj instanceof Suscriptor) {
+        
+        Suscriptor suscriptor = (Suscriptor) obj;
+
+        if (this.cliente.equals(suscriptor.getCliente())) {
+
+          return true;
+  
+        }else{
+  
+          return false;
+  
+        }
+      } else {
+
+        return false;
+
+      }
+      
+    }
+
   }
+
 }

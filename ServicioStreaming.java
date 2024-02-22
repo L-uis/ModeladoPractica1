@@ -14,7 +14,7 @@ public interface ServicioStreaming extends Sujeto{
    * 
    * @param suscriptor El suscriptor al que se le hara el cobro.
    */
-  void cobro(Cliente suscriptor);
+  String cobro(Cliente suscriptor);
 
   /**
    * Metodo que da una recomendacion de la lista de recomendaciones del servicio.
@@ -22,12 +22,5 @@ public interface ServicioStreaming extends Sujeto{
    * @return Una recomendacion en forma de cadena.
    */
   String getRecomendacion();
-
-  /**
-   * Metodo que da el nombre del servicio.
-   * 
-   * @return nombre del servicio.
-   */
-  String getNombre();
   
 }

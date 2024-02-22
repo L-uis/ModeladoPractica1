@@ -1,16 +1,21 @@
 
-import java.io.IOException;
 import java.util.LinkedList;
 
 public class Memeflix implements ServicioStreaming{
+
+  private final String NOMBRE_DE_LA_PLATAFORMA = "Memeflix";
 
   private LinkedList<Suscriptor> suscriptoresActivos;
 
   private LinkedList<Suscriptor> suscriptoresInactivos;
 
+  private LinkedList<String> tiposDeSuscripcion;
+
   private LinkedList<String> recomendaciones;
 
-  private LinkedList<String> tiposDeSuscripcion;
+  private int contadorDeRecomendaciones;
+
+  private String recomendacionDelMes;
 
   private CobroMemeflix cobro;
 
@@ -29,6 +34,8 @@ public class Memeflix implements ServicioStreaming{
     tiposDeSuscripcion.add("Sucripcion de Memeflix para dos dispositivos");
 
     tiposDeSuscripcion.add("Sucripcion de Memeflix para cuatro dispositivos");
+
+    contadorDeRecomendaciones = 0;
 
   }
 
@@ -49,9 +56,7 @@ public class Memeflix implements ServicioStreaming{
 
       Cliente clienteActual = suscriptor.getCliente();
 
-      clienteActual.anadirRegistro(clienteActual.getNombre() + " bienvenido a Memeflix");
-
-      cobro(clienteActual);
+      clienteActual.anadirRegistro(clienteActual.getNombre() + " bienvenido a " + NOMBRE_DE_LA_PLATAFORMA);
 
     } else if (suscriptoresInactivos.contains(suscriptor)) {
 
@@ -66,16 +71,77 @@ public class Memeflix implements ServicioStreaming{
 
   }
   
+  @Override
   public void remover(Cliente cliente){
+
+    Suscriptor buscaSuscriptor = new Suscriptor(cliente);
+
+    if (suscriptoresActivos.contains(buscaSuscriptor)) {
+    
+      int indiceDelSuscriptor = suscriptoresActivos.indexOf(buscaSuscriptor);
+
+      Suscriptor suscriptor = suscriptoresActivos.get(indiceDelSuscriptor); 
+
+      suscriptoresActivos.remove(indiceDelSuscriptor);
+
+      suscriptoresInactivos.add(suscriptor);
+
+      String mensajeDespedida = cliente.getNombre() + " lamentamos que dejes " + NOMBRE_DE_LA_PLATAFORMA;
+
+      cliente.anadirRegistro(mensajeDespedida);
+    
+    } else {
+
+      System.out.println("El cliente " + cliente.getNombre() + " no esta suscrito a " + NOMBRE_DE_LA_PLATAFORMA);
+
+    }
 
   }
 
   public void notificar(){
+  
+    for (Suscriptor suscriptor : suscriptoresActivos) {
 
+      Cliente cliente = suscriptor.getCliente();    
+
+      cliente.anadirRegistro(NOMBRE_DE_LA_PLATAFORMA);
+
+      String estadoDelCobro = this.cobro(cliente);
+
+      String rechazado = "El pago a sido rechazado, se cancelara la suscripcion del servicio";
+
+      if (estadoDelCobro.equals(rechazado)) {
+
+        cliente.anadirRegistro(rechazado);
+      
+        suscriptor.setTipoDeSuscripcion("Inactivo");
+
+        this.remover(cliente);
+
+        break;
+
+      } else {
+
+        cliente.anadirRegistro(estadoDelCobro);
+
+      }
+
+      suscriptor.aumentarAntiguedad();
+
+      String mensajeDeAntiguedad = cliente.getNombre() + " llevas suscrito a " + NOMBRE_DE_LA_PLATAFORMA + " " + suscriptor.getAntiguedad() + " meses";
+
+      cliente.anadirRegistro(mensajeDeAntiguedad);
+
+      String recomendacion = this.getRecomendacion();
+
+      cliente.anadirRegistro(recomendacion);
+
+    }
+  
   }
 
   @Override
-  public void cobro(Cliente cliente) {
+  public String cobro(Cliente cliente) {
 
     Suscriptor buscaSuscriptor = new Suscriptor(cliente);
 
@@ -83,7 +149,7 @@ public class Memeflix implements ServicioStreaming{
 
     Suscriptor suscriptor = suscriptoresActivos.get(indiceDelSuscriptor); 
     
-    String tipoSuscripcion = suscriptor.getTipoSuscripcion();
+    String tipoSuscripcion = suscriptor.getTipoDeSuscripcion();
     
     if (tipoSuscripcion.equals("Sucripcion de Memeflix para un dispositivo")){
       
@@ -98,45 +164,42 @@ public class Memeflix implements ServicioStreaming{
       cobro = new MemeflixCuatroDispositivos();
     }
 
-    String estadoDelCobro = cobro.cobro(cliente);
+    return cobro.cobro(cliente);
 
-    String rechazado = "El pago a sido rechazado, se cancelara la suscripcion del servicio";
-
-    if (estadoDelCobro.equals(rechazado)) {
-
-      cliente.anadirRegistro(rechazado);
-      
-      suscriptor.setTipoDeSuscripcion("Inactivo");
-
-      this.remover(cliente);
-
-    } else {
-
-      cliente.anadirRegistro(estadoDelCobro);
-
-    }
-    
   }
 
   @Override
   public String getRecomendacion() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getRecomendacion'");
-  }
 
-  @Override
-  public String getNombre() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getNombre'");
+    if (recomendaciones.size() == 0) {
+
+      return "Actualmente " + NOMBRE_DE_LA_PLATAFORMA + " no tiene recomendaciones";
+
+    }else{
+
+      contadorDeRecomendaciones++;
+      
+      if (contadorDeRecomendaciones == recomendaciones.size()) {
+
+        contadorDeRecomendaciones = 0;
+        
+      }
+
+      recomendacionDelMes = recomendaciones.get(contadorDeRecomendaciones);
+
+      return recomendacionDelMes;
+    
+    }
+
   }
 
   public class Suscriptor {
     
-    int antiguedad;
+    private int antiguedad;
     
-    String tipoSuscripcion;
+    private String tipoSuscripcion;
 
-    Cliente cliente;
+    private Cliente cliente;
 
     public Suscriptor(Cliente cliente){
 
@@ -160,7 +223,7 @@ public class Memeflix implements ServicioStreaming{
       
     }
 
-    public String getTipoSuscripcion(){
+    public String getTipoDeSuscripcion(){
 
       return this.tipoSuscripcion;
     
@@ -186,6 +249,7 @@ public class Memeflix implements ServicioStreaming{
 
     @Override
     public boolean equals(Object obj){
+
       if (obj instanceof Suscriptor) {
         
         Suscriptor suscriptor = (Suscriptor) obj;
@@ -205,7 +269,8 @@ public class Memeflix implements ServicioStreaming{
 
       }
       
-
     }
+
   }
+
 }
