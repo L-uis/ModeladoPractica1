@@ -1,14 +1,26 @@
-
 import java.io.IOException;
 
+/**
+ * Clase que simula el comportamiento de diferentes clientes que se suscriben a servicios 
+ * de streaming durante un año.
+ * Usa las clases Cliente, ServicioStreaming, y Registro para modelar la simulación.
+ * Usa el patrón Observer para notificar a los clientes sobre los cobros y las recomendaciones 
+ * de los servicios.
+ * Usa el patrón Strategy para definir diferentes tipos de suscripción para cada servicio.
+ * Genera un archivo txt con el registro de cada cliente al final de la simulación.
+ * @author Mata
+ * @author Hermes
+ * @author Steve
+ */
 public class Simulacion {
-  
+
+  /**
+   * Metodo principal que ejecuta la simulación.
+   * @throws IOException Si ocurre un error al generar los archivos txt.
+   */
   public static void main(String[] args) throws IOException {
 
-    /**
-     * Se crea un arreglo con los meses
-     */
-
+    // Se crea un arreglo con los nombres de los meses
     String[] meses = {"///////////////////// Primer mes /////////////////////", "///////////////////// Segundo mes /////////////////////"
                       , "///////////////////// Tercer mes /////////////////////", "///////////////////// Cuarto mes /////////////////////"
                       , "///////////////////// Quinto mes /////////////////////", "///////////////////// Sexto mes /////////////////////"
@@ -18,16 +30,14 @@ public class Simulacion {
 
     int contador = 0;
 
-    /**
-     * Se inicializan los servicios.
-     */
-
+    // Se inicializa un contador para recorrer el arreglo de meses
     Memeflix memeflix = new Memeflix();
     Momazon momazon = new Momazon();
     Spootify spootify = new Spootify();
     Thisney thisney = new Thisney();
     HVO hvo = new HVO();
 
+    // Se inicializan los servicios de streaming con sus respectivas recomendaciones
     memeflix.anadirRecomendacion("Luther: Cae la noche");
     memeflix.anadirRecomendacion("La sociedad de la nieve");
     memeflix.anadirRecomendacion("One Piece");
@@ -58,12 +68,7 @@ public class Simulacion {
     hvo.anadirRecomendacion("Judas y el mesías negro");
     hvo.anadirRecomendacion("Dunkerque");
 
-
-
-    /**
-     * Se colocan los tipos de suscripciones como constantes.
-     */
-
+    // Se colocan los tipos de suscripciones como constantes
     final String MEMEFLIX_UN_DISPOSITIVO = "Sucripcion de Memeflix para un dispositivo";
     final String MEMEFLIX_DOS_DISPOSITIVOS = "Sucripcion de Memeflix para dos dispositivos";
     final String MEMEFLIX_CUATRO_DISPOSITIVOS = "Sucripcion de Memeflix para cuatro dispositivos";
@@ -82,7 +87,7 @@ public class Simulacion {
 
 
     /**
-     * Se inicializan los suscriptores con los datos dados:
+     * Se inicializan los clientes con los datos dados y sus respectivas suscripciones
      * 
      * Alicia inicia la simulacion con 15000.
      * Bob inicia la simulacion con 2400.
@@ -91,7 +96,6 @@ public class Simulacion {
      * Erika inicia la simulacion con 10000.
      * Fausto inicia la simulacion con 5000.
      */
-    
     Cliente alicia = new Cliente("Alicia", 15000);
     Cliente bob = new Cliente("Bob", 2400);
     Cliente cesar = new Cliente("Cesar", 5000);
@@ -108,9 +112,7 @@ public class Simulacion {
      * Diego contrara HVO Max, Momazon Prime viedo premium y Spootify normal.
      * Erika contrata Memeflix para cuatro dispositivos, Spootify normal y HVO Max.
      * Fausto contrata Thisney+ y HVO Max.
-     * 
      */
-
     alicia.anadirRegistro("\n" + meses[contador] + "\n");
     bob.anadirRegistro("\n" + meses[contador] + "\n");
     cesar.anadirRegistro("\n" + meses[contador] + "\n");
@@ -154,7 +156,6 @@ public class Simulacion {
     /**
      * Segundo mes.
      */
-
     alicia.anadirRegistro("\n" + meses[contador] + "\n");
     bob.anadirRegistro("\n" + meses[contador] + "\n");
     cesar.anadirRegistro("\n" + meses[contador] + "\n");
@@ -176,7 +177,6 @@ public class Simulacion {
      * Erika contrata Thisney+ y se desuscribe de HVO Max.
      * Fausto cancela todas sus suscripciones y contrata Memeflix para un dispositivo.
      */
-
     alicia.anadirRegistro("\n" + meses[contador] + "\n");
     bob.anadirRegistro("\n" + meses[contador] + "\n");
     cesar.anadirRegistro("\n" + meses[contador] + "\n");
@@ -205,7 +205,6 @@ public class Simulacion {
      * 
      * Bob se da de baja en Memeflix y Momazon.
      */
-
     alicia.anadirRegistro("\n" + meses[contador] + "\n");
     bob.anadirRegistro("\n" + meses[contador] + "\n");
     cesar.anadirRegistro("\n" + meses[contador] + "\n");
@@ -227,7 +226,6 @@ public class Simulacion {
      * Quinto mes
      * 
      * Fausto contrata Thisney+ y HVO Max.
-     *  
      */
     alicia.anadirRegistro("\n" + meses[contador] + "\n");
     bob.anadirRegistro("\n" + meses[contador] + "\n");
@@ -253,7 +251,6 @@ public class Simulacion {
      * Erika Cancela todos sus servicios.
      * Fausto cancela todas sus suscripciones.
      */
-
     alicia.anadirRegistro("\n" + meses[contador] + "\n");
     bob.anadirRegistro("\n" + meses[contador] + "\n");
     cesar.anadirRegistro("\n" + meses[contador] + "\n");
@@ -280,7 +277,6 @@ public class Simulacion {
      * Cesar contrata Spootify premium.
      * Diego contrata Memeflix para un dispositivo y cambia a la version premium de Spootify y cancela Momazon
      */
-
     alicia.anadirRegistro("\n" + meses[contador] + "\n");
     bob.anadirRegistro("\n" + meses[contador] + "\n");
     cesar.anadirRegistro("\n" + meses[contador] + "\n");
@@ -305,7 +301,6 @@ public class Simulacion {
      * Octavo mes
      * 
      */
-
     alicia.anadirRegistro("\n" + meses[contador] + "\n");
     bob.anadirRegistro("\n" + meses[contador] + "\n");
     cesar.anadirRegistro("\n" + meses[contador] + "\n");
@@ -323,7 +318,6 @@ public class Simulacion {
     /**
      * Noveno mes
      */
-
     alicia.anadirRegistro("\n" + meses[contador] + "\n");
     bob.anadirRegistro("\n" + meses[contador] + "\n");
     cesar.anadirRegistro("\n" + meses[contador] + "\n");
@@ -343,7 +337,6 @@ public class Simulacion {
      * 
      * Erica contrata Momazon Premium, HVO Max y Thisney+
      */
-
     alicia.anadirRegistro("\n" + meses[contador] + "\n");
     bob.anadirRegistro("\n" + meses[contador] + "\n");
     cesar.anadirRegistro("\n" + meses[contador] + "\n");
@@ -365,7 +358,6 @@ public class Simulacion {
     /**
      * Decimoprimer mes
      */
-
     alicia.anadirRegistro("\n" + meses[contador] + "\n");
     bob.anadirRegistro("\n" + meses[contador] + "\n");
     cesar.anadirRegistro("\n" + meses[contador] + "\n");
@@ -383,7 +375,6 @@ public class Simulacion {
     /**
      * Decimosegundo mes
      */
-
     alicia.anadirRegistro("\n" + meses[contador] + "\n");
     bob.anadirRegistro("\n" + meses[contador] + "\n");
     cesar.anadirRegistro("\n" + meses[contador] + "\n");
@@ -400,12 +391,10 @@ public class Simulacion {
     /**
      * Se generan los registros de los clientes.
      */
-
     alicia.generarRegistro();
     bob.generarRegistro();
     cesar.generarRegistro();
     erika.generarRegistro();
     fausto.generarRegistro();
   }
-
 }
