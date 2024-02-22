@@ -1,6 +1,16 @@
 
 import java.util.LinkedList;
 
+/**
+ * Clase que simula la plataforma Thisney+.
+ * 
+ * @author Mata
+ * @author Hermes
+ * @author Steve
+ * 
+ * @version Febrero 2024
+ * 
+ */
 public class Thisney implements ServicioStreaming{
 
   private final String NOMBRE_DE_LA_PLATAFORMA = "Thisney+";
@@ -19,6 +29,12 @@ public class Thisney implements ServicioStreaming{
 
   private CobroThisney cobro;
 
+
+  /**
+   * Constructor de la clase Thisney, inicializa las listas, anade
+   * la Sucripcion con descuento de Thisney+ y Sucripcion normal de Thisney+
+   * a la lista de tiposDeSuscripvion.
+   */
   public Thisney(){
 
     suscriptoresActivos = new LinkedList<Suscriptor>();
@@ -69,6 +85,7 @@ public class Thisney implements ServicioStreaming{
   
   }
 
+  @Override
   public void remover(Cliente cliente){
 
     Suscriptor buscaSuscriptor = new Suscriptor(cliente);
@@ -97,6 +114,7 @@ public class Thisney implements ServicioStreaming{
 
   }
 
+  @Override
   public void notificar(){
 
     for (Suscriptor suscriptor : suscriptoresActivos) {
@@ -106,7 +124,7 @@ public class Thisney implements ServicioStreaming{
       cliente.anadirRegistro(NOMBRE_DE_LA_PLATAFORMA);
 
       String estadoDelCobro = this.cobro(cliente);
-
+      
       String rechazado = "El pago a sido rechazado, se cancelara la suscripcion del servicio";
 
       if (estadoDelCobro.equals(rechazado)) {
@@ -175,10 +193,41 @@ public class Thisney implements ServicioStreaming{
 
   @Override
   public String getRecomendacion() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getRecomendacion'");
+
+    if (recomendaciones.size() == 0) {
+
+      return "Actualmente " + NOMBRE_DE_LA_PLATAFORMA + " no tiene recomendaciones";
+
+    }else{
+
+      contadorDeRecomendaciones++;
+      
+      if (contadorDeRecomendaciones == recomendaciones.size()) {
+
+        contadorDeRecomendaciones = 0;
+        
+      }
+
+      recomendacionDelMes = recomendaciones.get(contadorDeRecomendaciones);
+
+      return recomendacionDelMes;
+    
+    }
+
   }
 
+  @Override
+  public void anadirRecomendacion(String recomendacion){
+
+    recomendaciones.add(recomendacion);
+
+  }
+
+  /**
+   * Clase auxiliar Suscriptor, esta clase es usada para guardar los datos de antiguedad,
+   * el tipo de suscriptor de un cliente y si este tiene una cuenta con descuento o no.
+   * 
+   */
   public class Suscriptor {
     
     private int antiguedad;
@@ -189,22 +238,32 @@ public class Thisney implements ServicioStreaming{
 
     private boolean descuento;
 
+    /**
+     * Contructor de la clase Suscriptor que se usa para buscar un suscriptor que tenga
+     * al mismo cliente.
+     * 
+     * @param cliente El cliente que sera buscado.
+     */
     public Suscriptor(Cliente cliente){
 
       this.cliente = cliente;
 
     }
 
-    public Suscriptor(Cliente cliente, String tipoDeSuscripcion){
-
+    /**
+     * Constructor de la clase suscriptor que se usa para guardar el tipo de suscripcion
+     * de un cliente.
+     * 
+     * @param cliente Cliente que contrata el servicio de Streaming.
+     * @param tipoSuscripcion Tipo de suscripcion del cliente.
+     */
+    public Suscriptor(Cliente cliente, String tipoSuscripcion){
+      
       this.cliente = cliente;
-      
-      this.tipoSuscripcion = tipoDeSuscripcion;
-      
+
+      this.tipoSuscripcion = tipoSuscripcion;
+
       this.antiguedad = 0;
-
-      this.descuento = true;
-
     }
 
     private Cliente getCliente(){

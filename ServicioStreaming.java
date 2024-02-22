@@ -22,5 +22,12 @@ public interface ServicioStreaming extends Sujeto{
    * @return Una recomendacion en forma de cadena.
    */
   String getRecomendacion();
+
+  /**
+   * Metodo que añade una recomendacion al servicio.
+   * 
+   * @param recomendacion La recomendacion que sera anadida.
+   */
+  void anadirRecomendacion(String recomendacion);
   
 }

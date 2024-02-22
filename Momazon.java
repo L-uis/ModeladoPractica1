@@ -1,6 +1,16 @@
 
 import java.util.LinkedList;
 
+/**
+ * Clase que simula la plataforma Momazon Prime Video.
+ * 
+ * @author Mata
+ * @author Hermes
+ * @author Steve
+ * 
+ * @version Febrero 2024
+ * 
+ */
 public class Momazon implements ServicioStreaming{
 
   private final String NOMBRE_DE_LA_PLATAFORMA = "Momazon Prime Video";
@@ -19,6 +29,11 @@ public class Momazon implements ServicioStreaming{
 
   private CobroMomazon cobro;
 
+  /**
+   * Constructor de la clase Momazon, inicializa las listas, anade
+   * la SSucripcion normal de Momazon Prime Video y Sucripcion premium de Momazon Prime Vide
+   * a la lista de tiposDeSuscripvion.
+   */
   public Momazon(){
     
     suscriptoresActivos = new LinkedList<Suscriptor>();
@@ -69,6 +84,7 @@ public class Momazon implements ServicioStreaming{
   
   }
 
+  @Override
   public void remover(Cliente cliente){
 
     Suscriptor buscaSuscriptor = new Suscriptor(cliente);
@@ -95,6 +111,7 @@ public class Momazon implements ServicioStreaming{
 
   }
 
+  @Override
   public void notificar(){
     for (Suscriptor suscriptor : suscriptoresActivos) {
 
@@ -185,6 +202,18 @@ public class Momazon implements ServicioStreaming{
 
   }
 
+  @Override
+  public void anadirRecomendacion(String recomendacion){
+
+    recomendaciones.add(recomendacion);
+
+  }
+
+  /**
+   * Clase auxiliar Suscriptor, esta clase es usada para guardar los datos de antiguedad y
+   * el tipo de suscriptor de un cliente
+   * 
+   */
   public class Suscriptor{
 
     private int antiguedad;
@@ -193,12 +222,25 @@ public class Momazon implements ServicioStreaming{
 
     private Cliente cliente;
 
+    /**
+     * Contructor de la clase Suscriptor que se usa para buscar un suscriptor que tenga
+     * al mismo cliente.
+     * 
+     * @param cliente El cliente que sera buscado.
+     */
     public Suscriptor(Cliente cliente){
 
       this.cliente = cliente;
 
     }
 
+    /**
+     * Constructor de la clase suscriptor que se usa para guardar el tipo de suscripcion
+     * de un cliente.
+     * 
+     * @param cliente Cliente que contrata el servicio de Streaming.
+     * @param tipoSuscripcion Tipo de suscripcion del cliente.
+     */
     public Suscriptor(Cliente cliente, String tipoSuscripcion){
       
       this.cliente = cliente;
