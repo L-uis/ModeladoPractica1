@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.Random;
 
 public class Momazon implements ServicioStreaming{
 
@@ -26,6 +27,12 @@ public class Momazon implements ServicioStreaming{
     tiposDeSuscripcion.add("Sucripcion de Momazon normal");
 
     tiposDeSuscripcion.add("Sucripcion de Momazon premium");
+
+    recomendaciones.add("Smile");
+
+    recomendaciones.add("Top Gun: Maverick");
+
+    recomendaciones.add("Un amigo extraordinario");
   }
 
   @Override
@@ -70,6 +77,20 @@ public class Momazon implements ServicioStreaming{
   }
 
   public void notificar(){
+    for(Suscriptor s : suscriptoresActivos){
+    
+      Cliente cliente = s.getCliente();
+    
+      try {
+    
+        cliente.actualizar(getRecomendacion());
+    
+      } catch (IOException e) {
+    
+        e.printStackTrace();
+      }
+
+    }
 
   }
 
@@ -102,7 +123,7 @@ public class Momazon implements ServicioStreaming{
       
       suscriptor.setTipoDeSuscripcion("Inactivo");
 
-      this.remover(cliente);
+      this.remover(cliente, tipoSuscripcion);
 
     } else {
 
@@ -114,14 +135,17 @@ public class Momazon implements ServicioStreaming{
 
   @Override
   public String getRecomendacion() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getRecomendacion'");
+  
+    Random rand = new Random();
+        
+    int randomNumber = rand.nextInt(3);
+
+    return "Esta es mi recomendacion de Momazon:" + recomendaciones.get(randomNumber);
   }
 
   @Override
   public String getNombre() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getNombre'");
+    return "Esto es Momazon!!!!!";
   }
 
   public class Suscriptor{

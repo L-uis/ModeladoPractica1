@@ -1,6 +1,7 @@
 
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.Random;
 
 public class Memeflix implements ServicioStreaming{
 
@@ -29,6 +30,12 @@ public class Memeflix implements ServicioStreaming{
     tiposDeSuscripcion.add("Sucripcion de Memeflix para dos dispositivos");
 
     tiposDeSuscripcion.add("Sucripcion de Memeflix para cuatro dispositivos");
+
+    recomendaciones.add("Luther: Cae la noche");
+
+    recomendaciones.add("La sociedad de la nieve");
+    
+    recomendaciones.add("One Piece");
 
   }
 
@@ -66,11 +73,36 @@ public class Memeflix implements ServicioStreaming{
 
   }
   
-  public void remover(Cliente cliente){
+  public void remover(Cliente cliente, String tipoDeSuscripcion){
+
+    Suscriptor suscriptor = new Suscriptor(cliente, tipoDeSuscripcion);
+    
+    if(suscriptoresActivos.contains(suscriptor)){
+    
+      suscriptoresActivos.remove(suscriptor);
+    
+      suscriptoresInactivos.add(suscriptor);
+    
+    }
 
   }
 
   public void notificar(){
+    
+    for(Suscriptor s : suscriptoresActivos){
+    
+      Cliente cliente = s.getCliente();
+    
+      try {
+    
+        cliente.actualizar(getRecomendacion());
+    
+      } catch (IOException e) {
+    
+        e.printStackTrace();
+      }
+
+    }
 
   }
 
@@ -108,7 +140,7 @@ public class Memeflix implements ServicioStreaming{
       
       suscriptor.setTipoDeSuscripcion("Inactivo");
 
-      this.remover(cliente);
+      this.remover(cliente, tipoSuscripcion);
 
     } else {
 
@@ -120,14 +152,17 @@ public class Memeflix implements ServicioStreaming{
 
   @Override
   public String getRecomendacion() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getRecomendacion'");
+    Random rand = new Random();
+        
+    int randomNumber = rand.nextInt(3);
+
+    return "Esta es mi recomendacion de Memeflix:" + recomendaciones.get(randomNumber);
+  
   }
 
   @Override
   public String getNombre() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getNombre'");
+    return "Esto es Memeflix!!!!!";
   }
 
   public class Suscriptor {

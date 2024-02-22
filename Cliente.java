@@ -100,9 +100,9 @@ public class Cliente implements Observador{
   }
 
   @Override
-  public void actualizar(ServicioStreaming servicioActual) throws IOException {
+  public void actualizar(String recomendacion) throws IOException {
  
-    this.recomendacion = servicioActual.getRecomendacion();
+    this.recomendacion = recomendacion;
     
     verRecomendacion();
   

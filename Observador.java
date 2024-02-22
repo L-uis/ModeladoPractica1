@@ -15,5 +15,5 @@ public interface Observador {
    * 
    * @throws IOException 
    */
-  void actualizar(ServicioStreaming s) throws IOException;
+  void actualizar(String s) throws IOException;
 }
