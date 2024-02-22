@@ -22,11 +22,43 @@ public class Momazon implements ServicioStreaming{
     recomendaciones = new LinkedList<String>();
     
     tiposDeSuscripcion = new LinkedList<>();
+
+    tiposDeSuscripcion.add("Sucripcion de Momazon normal");
+
+    tiposDeSuscripcion.add("Sucripcion de Momazon premium");
   }
+
   @Override
-  public void registrar(Cliente s, String tipoDeSuscripcion) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'registrar'");
+  public void registrar(Cliente cliente, String tipoDeSuscripcion) {
+
+    if (!tiposDeSuscripcion.contains(tipoDeSuscripcion)) {
+
+      throw new IllegalArgumentException("Tipo de suscripcion invalido");
+
+    }
+
+    Suscriptor suscriptor = new Suscriptor(cliente, tipoDeSuscripcion);
+
+    if (!suscriptoresActivos.contains(suscriptor) && !suscriptoresInactivos.contains(suscriptor) ) {
+      
+      suscriptoresActivos.add(suscriptor);
+
+      Cliente clienteActual = suscriptor.getCliente();
+
+      clienteActual.anadirRegistro(clienteActual.getNombre() + " bienvenido a Momazon");
+
+      cobro(clienteActual);
+
+    } else if (suscriptoresInactivos.contains(suscriptor)) {
+
+      suscriptoresActivos.add(suscriptor);
+
+      suscriptoresInactivos.remove(suscriptor);
+
+      Cliente clienteActual = suscriptor.getCliente();
+
+      clienteActual.anadirRegistro("Bienvenido de vuelta " + clienteActual.getNombre());
+    }
   }
 
   public void remover(Cliente s){
