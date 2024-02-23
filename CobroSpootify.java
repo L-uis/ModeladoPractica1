@@ -1,6 +1,6 @@
 
 /**
- * Interface que permite hacer cobros para el servicio Spotify.
+ * Interface que permite hacer cobros para el servicio Spootify.
  * 
  * @author Mata
  * @author Hermes

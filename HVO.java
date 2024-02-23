@@ -33,7 +33,7 @@ public class HVO implements ServicioStreaming{
   /**
    * Constructor de la clase HVO, inicializa las listas, anade
    * la Suscripcion de prueba de HVO Max y Suscripcion normal de HVO Max
-   * a la lista de tiposDeSuscripvion.
+   * a la lista de tiposDeSuscripcion.
    */
   public HVO(){
 
@@ -51,17 +51,6 @@ public class HVO implements ServicioStreaming{
 
   }
 
-  /**
-   * Metodo que registra a un cliente con el tipo de suscripción indicado.
-   * Si el cliente no estaba suscrito previamente, se le añade a la lista de 
-   * suscriptores activos y se le da la bienvenida.
-   * Si el cliente estaba suscrito pero inactivo, se le reactiva la suscripción 
-   * y se le da la bienvenida de vuelta.
-   * 
-   * @param cliente El cliente que se quiere registrar.
-   * @param tipoDeSuscripcion El tipo de suscripción que el cliente elige.
-   * @throws IllegalArgumentException Si el tipo de suscripción es inválido.
-   */
   @Override
   public void registrar(Cliente cliente, String tipoDeSuscripcion) {
     
@@ -94,15 +83,6 @@ public class HVO implements ServicioStreaming{
 
   }
   
-  /** 
-   * Metodo que remueve a un cliente de la plataforma.
-   * Si el cliente estaba suscrito y activo, se le quita de la lista de suscriptores 
-   * activos y se le añade a la lista de suscriptores inactivos.
-   * Se le desactiva la suscripción de prueba si la tenía y se le despide con un mensaje.
-   * Si el cliente no estaba suscrito, se le informa con otro mensaje.
-   * 
-   * @param cliente El cliente que se quiere remover.
-   */
   @Override
   public void remover(Cliente cliente){
 
@@ -131,16 +111,6 @@ public class HVO implements ServicioStreaming{
     }
   }
 
-  /**
-   * Metodo que notifica a los clientes sobre los cobros y las recomendaciones.
-   * Se recorre la lista de suscriptores activos y se les cobra según el tipo de 
-   * suscripción que tengan.
-   * Si el cobro es rechazado, se cancela la suscripción del cliente y se le informa 
-   * con un mensaje.
-   * Si el cobro es exitoso, se le muestra el estado del cobro y se le incrementa la 
-   * antigüedad de la suscripción.
-   * Se le muestra al cliente la recomendación del mes de la plataforma.
-   */
   @Override
   public void notificar(){
 
@@ -184,14 +154,6 @@ public class HVO implements ServicioStreaming{
 
   }
 
-  /**
-   * Metodo que devuelve el valor del cobro al cliente según el tipo de suscripción.
-   * Usa la interface CobroHVO para delegar la responsabilidad del cobro a una clase 
-   * que la implemente.
-   * 
-   * @param cliente El cliente al que se le cobra el servicio.
-   * @return El estado del cobro, si fue exitoso o rechazado.
-   */
   @Override
   public String cobro(Cliente cliente){
 
@@ -229,13 +191,6 @@ public class HVO implements ServicioStreaming{
   
   }
 
-  /**
-   * Metodo que devuelve la recomendación del mes de la plataforma.
-   * Usa la lista de recomendaciones para elegir una al azar y la asigna a la variable 
-   * recomendacionDelMes.
-   * 
-   * @return La recomendación del mes en forma de cadena.
-   */
   @Override
   public String getRecomendacion() {
     
@@ -257,11 +212,6 @@ public class HVO implements ServicioStreaming{
 
   }
 
-  /**
-   * Metodo que anade una recomendacion a la lista de recomendaciones de la plataforma.
-   * 
-   * @param recomendacion La recomendacion que se quiere anadir.
-   */
   @Override
   public void anadirRecomendacion(String recomendacion){
 
@@ -269,16 +219,6 @@ public class HVO implements ServicioStreaming{
 
   }
 
-  /**
-   * Metodo que cambia el tipo de suscripcion de un cliente a otro diferente.
-   * Si el tipo de suscripcion es valido, se actualiza el tipo de suscripcion del cliente 
-   * y se le informa con un mensaje.
-   * Si el tipo de suscripcion es invalido, se lanza una excepcion.
-   * 
-   * @param cliente El cliente que quiere cambiar su tipo de suscripcion.
-   * @param tipoDeSuscripcion El nuevo tipo de suscripcion que el cliente elige.
-   * @throws IllegalArgumentException Si el tipo de suscripcion es invalido.
-   */
   @Override
   public void cambiarSuscripcion(Cliente cliente, String tipoDeSuscripcion) {
 

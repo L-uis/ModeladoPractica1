@@ -6,6 +6,7 @@
  * su estado.
  * Tiene métodos para generar un cobro, dar una recomendación, añadir una recomendación 
  * y cambiar el tipo de suscripción de un cliente.
+ * 
  * @author Mata
  * @author Hermes
  * @author Steve

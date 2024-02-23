@@ -1,9 +1,6 @@
 
 /**
- * Clase que permite hacer el cobro de una suscripcion de HVO Max.
- * Implementa la interface CobroHVO para definir el método cobro.
- * Usa una constante para el monto del cobro y dos cadenas para 
- * los mensajes de aprobado y rechazado.
+ * Interface que permite hacer cobros para el servicio HVO+.
  * 
  * @author Mata
  * @author Hermes

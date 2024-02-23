@@ -4,13 +4,15 @@ import java.util.Random;
 
 /**
  * Clase que simula la plataforma Thisney+.
+ * Implementa la interface ServicioStreaming para definir los métodos registrar, 
+ * remover y notificar.
+ * Usa la interface CobroThisney. para realizar los cobros a los clientes según el 
+ * tipo de suscripción.
+ * Usa la clase Suscriptor para almacenar la información de clientes y su suscripcion.
  * 
  * @author Mata
  * @author Hermes
  * @author Steve
- * 
- * @version Febrero 2024
- * 
  */
 public class Thisney implements ServicioStreaming{
 
@@ -31,7 +33,7 @@ public class Thisney implements ServicioStreaming{
 
   /**
    * Constructor de la clase Thisney, inicializa las listas, anade
-   * la Sucripcion con descuento de Thisney+ y Sucripcion normal de Thisney+
+   * la Suscripcion con descuento de Thisney+ y Sucripcion normal de Thisney+
    * a la lista de tiposDeSuscripvion.
    */
   public Thisney(){
@@ -284,48 +286,87 @@ public class Thisney implements ServicioStreaming{
       this.antiguedad = 0;
     }
 
+    /**
+     * Metodo que devuelve el cliente asociado al suscriptor.
+     * 
+     * @return El cliente del suscriptor.
+     */
     private Cliente getCliente(){
 
       return this.cliente;
       
     }
 
+    /**
+     * Metodo que devuelve el tipo de suscripcion del suscriptor.
+     * 
+     * @return El tipo de suscripcion del suscriptor.
+     */
     public String getTipoDeSuscripcion(){
 
       return this.tipoSuscripcion;
     
     }
 
+    /**
+     * Metodo que devuelve la antiguedad del suscriptor en meses.
+     * 
+     * @return La antiguedad del suscriptor.
+     */
     public int getAntiguedad(){
 
       return this.antiguedad;
 
     }
 
+    /**
+     * Metodo que cambia el tipo de suscripcion del suscriptor por otro diferente.
+     * 
+     * @param cadena El nuevo tipo de suscripcion del suscriptor.
+     */
     public void setTipoDeSuscripcion(String cadena){
 
       this.tipoSuscripcion = cadena;
 
     }
 
+    /**
+     * Metodo que elimina el descuento.
+     */
     public void quitarDescuento(){
 
       descuento = false;
 
     }
 
+    /**
+     * Metodo que indica si se tiene descuento o no.
+     * 
+     * @return true si se tiene descuento, false si no se tiene.
+     */
     public boolean verDescuento(){
 
       return descuento;
 
     }
 
+    /**
+     * Metodo que aumenta la antiguedad del suscriptor en un mes.
+     */
     public void aumentarAntiguedad(){
 
       antiguedad++;
 
     }
 
+    /**
+     * Metodo que compara si dos objetos son iguales.
+     * Dos objetos son iguales si son instancias de la clase Suscriptor y tienen 
+     * el mismo cliente.
+     * 
+     * @param obj El objeto con el que se quiere comparar.
+     * @return true si los objetos son iguales, false en caso contrario.
+     */
     @Override
     public boolean equals(Object obj){
       

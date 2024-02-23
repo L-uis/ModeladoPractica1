@@ -4,6 +4,11 @@ import java.util.Random;
 
 /**
  * Clase que simula la plataforma Momazon Prime Video.
+ * Implementa la interface ServicioStreaming para definir los métodos registrar, 
+ * remover y notificar.
+ * Usa la interface CobroMomazon para realizar los cobros a los clientes según el 
+ * tipo de suscripción.
+ * Usa la clase Suscriptor para almacenar la información de clientes y su suscripcion.
  * 
  * @author Mata
  * @author Hermes
@@ -27,8 +32,8 @@ public class Momazon implements ServicioStreaming{
 
   /**
    * Constructor de la clase Momazon, inicializa las listas, anade
-   * la Suscripcion normal de Momazon Prime Video y Sucripcion premium de Momazon Prime Vide
-   * a la lista de tiposDeSuscripvion.
+   * la Suscripcion normal de Momazon Prime Video y Suscripcion premium de Momazon Prime Vide
+   * a la lista de tiposDeSuscripcion.
    */
   public Momazon(){
     
@@ -40,9 +45,9 @@ public class Momazon implements ServicioStreaming{
     
     tiposDeSuscripcion = new LinkedList<>();
 
-    tiposDeSuscripcion.add("Sucripcion normal de Momazon Prime Video");
+    tiposDeSuscripcion.add("Suscripcion normal de Momazon Prime Video");
 
-    tiposDeSuscripcion.add("Sucripcion premium de Momazon Prime Video");
+    tiposDeSuscripcion.add("Suscripcion premium de Momazon Prime Video");
 
   }
 
@@ -224,10 +229,9 @@ public class Momazon implements ServicioStreaming{
  
   }
 
-  /**
-   * Clase auxiliar Suscriptor, esta clase es usada para guardar los datos de antiguedad y
-   * el tipo de suscriptor de un cliente
-   * 
+   /**
+   * Clase auxiliar Suscriptor, esta clase es usada para guardar los datos de antiguedad,
+   * el tipo de suscriptor de un cliente.
    */
   public class Suscriptor{
 
@@ -265,36 +269,67 @@ public class Momazon implements ServicioStreaming{
       this.antiguedad = 0;
     }
 
+    /**
+     * Metodo que devuelve el cliente asociado al suscriptor.
+     * 
+     * @return El cliente del suscriptor.
+     */
     private Cliente getCliente(){
       
       return this.cliente;
 
     }
 
+    /**
+     * Metodo que devuelve el tipo de suscripcion del suscriptor.
+     * 
+     * @return El tipo de suscripcion del suscriptor.
+     */
     public String getTipoDeSuscripcion(){
       
       return this.tipoSuscripcion;
 
     }
 
+    /**
+     * Metodo que devuelve la antiguedad del suscriptor en meses.
+     * 
+     * @return La antiguedad del suscriptor.
+     */
     public int getAntiguedad(){
     
       return this.antiguedad;
     
     }
 
+    /**
+     * Metodo que cambia el tipo de suscripcion del suscriptor por otro diferente.
+     * 
+     * @param cadena El nuevo tipo de suscripcion del suscriptor.
+     */
     public void setTipoDeSuscripcion(String cadena){
 
       this.tipoSuscripcion = cadena;
 
     }
 
+    /**
+     * Metodo que aumenta la antiguedad del suscriptor en un mes.
+     */
     public void aumentarAntiguedad(){
       
       antiguedad++;
 
     }
 
+    /**
+     * Metodo que compara si dos objetos son iguales.
+     * Dos objetos son iguales si son instancias de la clase Suscriptor y tienen 
+     * el mismo cliente.
+     * 
+     * @param obj El objeto con el que se quiere comparar.
+     * @return true si los objetos son iguales, false en caso contrario.
+     */
     @Override
     public boolean equals(Object obj){
 

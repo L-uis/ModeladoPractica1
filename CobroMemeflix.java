@@ -1,9 +1,6 @@
 
 /**
- * Clase que permite hacer el cobro de una suscripcion de Memeflix.
- * Implementa la interface CobroMemeflix para definir el método cobro.
- * Usa una constante para el monto del cobro y dos cadenas para los 
- * mensajes de aprobado y rechazado.
+ * Interface que permite hacer cobros para el servicio Memeflix.
  * 
  * @author Mata
  * @author Hermes

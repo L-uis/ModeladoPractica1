@@ -5,10 +5,10 @@ import java.util.LinkedList;
  * recibe notificaciones y cobros de los mismos.
  * Implementa la interfaz Observador para poder actualizar su estado según los cambios 
  * de los servicios a los que está suscrito.
- * Tiene atributos como el nombre, el saldo, la lista de servicios, la recomendación y 
+ * Tiene atributos como el nombre, el saldo, la lista de servicios, la recomendacion y 
  * el registro.
- * Tiene métodos para agregar o eliminar suscripciones, cambiar el tipo de suscripción, 
- * descontar el saldo, ver la recomendación, generar el registro y actualizar el estado.
+ * Tiene metodos para agregar o eliminar suscripciones, cambiar el tipo de suscripcion, 
+ * descontar el saldo, ver la recomendacion, generar el registro y actualizar el estado.
  * 
  * @author Mata
  * @author Hermes
@@ -47,7 +47,7 @@ public class Cliente implements Observador{
    * Metodo que suscribe al cliente a un servicio de streaming.
    * 
    * @param servicio El servicio al que se desea suscribir.
-   * @param tipoDeSuscripcion El tipo de suscripción que se desea contratar.
+   * @param tipoDeSuscripcion El tipo de suscripcion que se desea contratar.
    */
   public void agregarSuscripcion(ServicioStreaming servicio, String tipoDeSuscripcion){
 
@@ -130,10 +130,10 @@ public class Cliente implements Observador{
 
   /**
    * Metodo que actualiza el estado del cliente según el servicio que le notifica.
-   * Asigna la recomendación del servicio al atributo recomendacion y la muestra.
+   * Asigna la recomendacion del servicio al atributo recomendacion y la muestra.
    * 
    * @param servicioActual El servicio que le notifica al cliente.
-   * @throws IOException Si ocurre un error al mostrar la recomendación.
+   * @throws IOException Si ocurre un error al mostrar la recomendacion.
    */
   @Override
   public void actualizar(ServicioStreaming servicioActual) throws IOException {
@@ -145,10 +145,10 @@ public class Cliente implements Observador{
   }
 
   /**
-   * Metodo que muestra la recomendación que el cliente recibe de un servicio.
-   * Añade la recomendación al registro del cliente.
+   * Metodo que muestra la recomendacion que el cliente recibe de un servicio.
+   * Añade la recomendacion al registro del cliente.
    * 
-   * @throws IOException Si ocurre un error al añadir la recomendación al registro.
+   * @throws IOException Si ocurre un error al añadir la recomendacion al registro.
    */
   public void verRecomendacion() throws IOException{
 
@@ -174,10 +174,10 @@ public class Cliente implements Observador{
   }
 
   /**
-   * Metodo que cambia el tipo de suscripción del cliente a un servicio.
+   * Metodo que cambia el tipo de suscripcion del cliente a un servicio.
    * 
-   * @param servicio El servicio al que se quiere cambiar el tipo de suscripción.
-   * @param tipoDeSuscripcion El nuevo tipo de suscripción que se quiere contratar.
+   * @param servicio El servicio al que se quiere cambiar el tipo de suscripcion.
+   * @param tipoDeSuscripcion El nuevo tipo de suscripcion que se quiere contratar.
    */
   public void cambiarSuscripcion(ServicioStreaming servicio, String tipoDeSuscripcion) {
 

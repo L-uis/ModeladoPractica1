@@ -9,11 +9,13 @@
 public interface CobroThisney {
 
   /**
-   * Metodo que realiza el cobro al suscriptor.
+   * Metodo que realiza el cobro al suscriptor de una suscripcion de Thisney.
+   * Compara el saldo disponible del suscriptor con el monto del cobro y 
+   * devuelve un mensaje según el resultado.
    * 
    * @param cliente El cliente al que se le cobra el servicio.
-   * @return el estado del cobro.
+   * @return El estado del cobro, si fue aprobado o rechazado.
    */
   String cobro(Cliente cliente);
-  
+
 }
