@@ -3,8 +3,8 @@ import java.util.LinkedList;
 /**
  * Clase que simula un cliente que se suscribe a diferentes servicios de streaming y 
  * recibe notificaciones y cobros de los mismos.
- * Implementa la interfaz Observador para poder actualizar su estado según los cambios 
- * de los servicios a los que está suscrito.
+ * Implementa la interfaz Observador para poder actualizar su estado segun los cambios 
+ * de los servicios a los que esta suscrito.
  * Tiene atributos como el nombre, el saldo, la lista de servicios, la recomendacion y 
  * el registro.
  * Tiene metodos para agregar o eliminar suscripciones, cambiar el tipo de suscripcion, 
@@ -129,7 +129,7 @@ public class Cliente implements Observador{
   }
 
   /**
-   * Metodo que actualiza el estado del cliente según el servicio que le notifica.
+   * Metodo que actualiza el estado del cliente segun el servicio que le notifica.
    * Asigna la recomendacion del servicio al atributo recomendacion y la muestra.
    * 
    * @param servicioActual El servicio que le notifica al cliente.
@@ -159,7 +159,7 @@ public class Cliente implements Observador{
   /**
    * Metodo que elimina todas las suscripciones del cliente.
    * Remueve al cliente de la lista de observadores de cada servicio.
-   * Vacía la lista de servicios del cliente.
+   * Vacia la lista de servicios del cliente.
    */
   public void eliminarTodasLasSuscripciones() {
 

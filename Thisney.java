@@ -4,11 +4,11 @@ import java.util.Random;
 
 /**
  * Clase que simula la plataforma Thisney+.
- * Implementa la interface ServicioStreaming para definir los métodos registrar, 
+ * Implementa la interface ServicioStreaming para definir los metodos registrar, 
  * remover y notificar.
- * Usa la interface CobroThisney. para realizar los cobros a los clientes según el 
- * tipo de suscripción.
- * Usa la clase Suscriptor para almacenar la información de clientes y su suscripcion.
+ * Usa la interface CobroThisney. para realizar los cobros a los clientes segun el 
+ * tipo de suscripcion.
+ * Usa la clase Suscriptor para almacenar la informacion de clientes y su suscripcion.
  * 
  * @author Mata
  * @author Hermes

@@ -3,11 +3,11 @@ import java.io.IOException;
 /**
  * Clase que simula el comportamiento de diferentes clientes que se suscriben a servicios 
  * de streaming durante un año.
- * Usa las clases Cliente, ServicioStreaming, y Registro para modelar la simulación.
- * Usa el patrón Observer para notificar a los clientes sobre los cobros y las recomendaciones 
+ * Usa las clases Cliente, ServicioStreaming, y Registro para modelar la simulacion.
+ * Usa el patron Observer para notificar a los clientes sobre los cobros y las recomendaciones 
  * de los servicios.
- * Usa el patrón Strategy para definir diferentes tipos de suscripción para cada servicio.
- * Genera un archivo txt con el registro de cada cliente al final de la simulación.
+ * Usa el patron Strategy para definir diferentes tipos de suscripcion para cada servicio.
+ * Genera un archivo txt con el registro de cada cliente al final de la simulacion.
  * 
  * @author Mata
  * @author Hermes
@@ -16,7 +16,7 @@ import java.io.IOException;
 public class Simulacion {
 
   /**
-   * Metodo principal que ejecuta la simulación.
+   * Metodo principal que ejecuta la simulacion.
    * 
    * @throws IOException Si ocurre un error al generar los archivos txt.
    */
@@ -67,7 +67,7 @@ public class Simulacion {
     hvo.anadirRecomendacion("Elvis");
     hvo.anadirRecomendacion("Cinco lobitos");
     hvo.anadirRecomendacion("Black Adam");
-    hvo.anadirRecomendacion("Judas y el mesías negro");
+    hvo.anadirRecomendacion("Judas y el mesias negro");
     hvo.anadirRecomendacion("Dunkerque");
 
     // Se colocan los tipos de suscripciones como constantes

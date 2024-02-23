@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 /**
  * Clase que permite mantener un registro y escribirlo en un archivo txt.
  * Tiene atributos para el nombre del archivo, el contenido del registro 
- * y métodos para añadir y escribir el registro.
+ * y metodos para añadir y escribir el registro.
  * 
  * @author Mata
  * @author Hermes
@@ -19,9 +19,9 @@ public class Registro {
 
   /**
    * Constructor de la clase Registro que recibe el nombre del archivo txt.
-   * Inicializa los atributos con el nombre dado y un StringBuilder vacío.
+   * Inicializa los atributos con el nombre dado y un StringBuilder vacio.
    * 
-   * @param nombre El nombre del archivo txt sin la extensión.
+   * @param nombre El nombre del archivo txt sin la extension.
    */
   public Registro(String nombre){
 
@@ -34,7 +34,7 @@ public class Registro {
   /**
    * Metodo que añade una cadena al registro.
    * Usa el metodo append del StringBuilder para añadir la cadena y un 
-   * salto de línea al final.
+   * salto de linea al final.
    * 
    * @param cadena La cadena que se quiere añadir al registro.
    */
@@ -51,7 +51,7 @@ public class Registro {
    * Captura y maneja las posibles excepciones que se puedan producir.
    * Cierra el archivo al finalizar.
    * 
-   * @throws IOException Si ocurre algún error de entrada o salida al 
+   * @throws IOException Si ocurre algun error de entrada o salida al 
    * crear o escribir el archivo.
    */
   public void escribirTXT() throws IOException{

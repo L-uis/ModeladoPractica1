@@ -11,7 +11,7 @@ public interface CobroMomazon {
   /**
    * Metodo que realiza el cobro al suscriptor de una suscripcion de Momazon.
    * Compara el saldo disponible del suscriptor con el monto del cobro y 
-   * devuelve un mensaje según el resultado.
+   * devuelve un mensaje segun el resultado.
    * 
    * @param cliente El cliente al que se le cobra el servicio.
    * @return El estado del cobro, si fue aprobado o rechazado.
