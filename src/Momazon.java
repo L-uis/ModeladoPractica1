@@ -167,11 +167,11 @@ public class Momazon implements ServicioStreaming{
     
     if (tipoSuscripcion.equals("Suscripcion premium de Momazon Prime Video")){
       
-      cobro = new MomazonNormal();
+      cobro = new MomazonPremium();
 
     }if (tipoSuscripcion.equals("Suscripcion normal de Momazon Prime Video")) {
       
-      cobro = new MomazonPremium();
+      cobro = new MomazonNormal();
 
     }
 

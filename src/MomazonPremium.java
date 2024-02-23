@@ -10,7 +10,7 @@
  */
 public class MomazonPremium implements CobroMomazon{
   
-  private final double MONTO = 130.00;
+  private final double MONTO = 150.00;
 
   private final String RECHAZADO = "El pago a sido rechazado, se cancelara la suscripcion del servicio";
 
