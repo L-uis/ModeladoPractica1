@@ -28,8 +28,6 @@ public class Spootify implements ServicioStreaming{
 
   private LinkedList<String> recomendaciones;
 
-  private String recomendacionDelMes;
-
   private CobroSpootify cobro;
 
   /**
@@ -193,9 +191,9 @@ public class Spootify implements ServicioStreaming{
 
       int numeroAleatorio = random.nextInt(recomendaciones.size()); 
 
-      recomendacionDelMes = NOMBRE_DE_LA_PLATAFORMA + " te recomienda: " +recomendaciones.get(numeroAleatorio);
+      String recomendacion = NOMBRE_DE_LA_PLATAFORMA + " te recomienda: " +recomendaciones.get(numeroAleatorio);
 
-      return recomendacionDelMes;
+      return recomendacion;
     
     }
 
