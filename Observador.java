@@ -1,5 +1,4 @@
 
-import java.io.IOException;
 
 /**
  * Interface que implementa el patron observer.
@@ -9,6 +8,8 @@ import java.io.IOException;
  * @author Mata
  * @author Hermes
  * @author Steve
+ * 
+ * @version Febrero 2024
  */
 public interface Observador {
 
@@ -16,9 +17,8 @@ public interface Observador {
    * Metodo que actualiza el estado de los observadores.
    * Se invoca cuando el servicio de streaming notifica a los observadores 
    * sobre algun cambio.
-   * @param s El servicio de streaming que notifica a los observadores.
-   * @throws IOException Si ocurre algun error de entrada o salida.
+   * @param servicio El servicio de streaming que notifica a los observadores.
    */
-  void actualizar(ServicioStreaming s) throws IOException;
+  void actualizar(ServicioStreaming servicio);
   
 }

@@ -1,3 +1,4 @@
+
 import java.io.IOException;
 import java.util.LinkedList;
 /**
@@ -13,6 +14,8 @@ import java.util.LinkedList;
  * @author Mata
  * @author Hermes
  * @author Steve
+ * 
+ * @version Febrero 2024
  */
 public class Cliente implements Observador{
 
@@ -123,10 +126,15 @@ public class Cliente implements Observador{
    * @throws IOException Si ocurre un error al escribir el archivo.
    */
   public void generarRegistro(){
+
     try {
+
       registro.escribirTXT();
+
     } catch (IOException e) {
+
       System.out.println("Error: " + e);
+
     }
   }
 
@@ -135,10 +143,9 @@ public class Cliente implements Observador{
    * Asigna la recomendacion del servicio al atributo recomendacion y la muestra.
    * 
    * @param servicioActual El servicio que le notifica al cliente.
-   * @throws IOException Si ocurre un error al mostrar la recomendacion.
    */
   @Override
-  public void actualizar(ServicioStreaming servicioActual) throws IOException {
+  public void actualizar(ServicioStreaming servicioActual){
  
     this.recomendacion = servicioActual.getRecomendacion();
     
@@ -150,9 +157,8 @@ public class Cliente implements Observador{
    * Metodo que muestra la recomendacion que el cliente recibe de un servicio.
    * Añade la recomendacion al registro del cliente.
    * 
-   * @throws IOException Si ocurre un error al añadir la recomendacion al registro.
    */
-  public void verRecomendacion() throws IOException{
+  public void verRecomendacion(){
 
     registro.anadirRegistro(this.recomendacion);
   

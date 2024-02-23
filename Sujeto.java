@@ -5,6 +5,7 @@
  * @author Hermes
  * @author Steve
  * 
+ * @version Febrero 2024
  */
 public interface Sujeto {
 
@@ -24,8 +25,7 @@ public interface Sujeto {
   /** 
    * Metodo que remueve a un cliente de la plataforma.
    * Si el cliente estaba suscrito y activo, se le quita de la lista de suscriptores 
-   * activos y se le añade a la lista de suscriptores inactivos.
-   * Se le desactiva la suscripcion de prueba si la tenia y se le despide con un mensaje.
+   * activos y se le añade a la lista de suscriptores inactivos y se le despide con un mensaje.
    * Si el cliente no estaba suscrito, se le informa con otro mensaje.
    * 
    * @param cliente El cliente que se quiere remover.

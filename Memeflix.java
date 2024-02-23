@@ -13,6 +13,8 @@ import java.util.Random;
  * @author Mata
  * @author Hermes
  * @author Steve
+ * 
+ * @version Febrero 2024
  */
 public class Memeflix implements ServicioStreaming{
 
@@ -55,34 +57,35 @@ public class Memeflix implements ServicioStreaming{
 
   @Override
   public void registrar(Cliente cliente, String tipoDeSuscripcion) {
-
+    
     if (!tiposDeSuscripcion.contains(tipoDeSuscripcion)) {
 
       throw new IllegalArgumentException("Tipo de suscripcion invalido");
 
     }
 
-    Suscriptor suscriptor = new Suscriptor(cliente, tipoDeSuscripcion);
+    Suscriptor suscriptorNuevo = new Suscriptor(cliente, tipoDeSuscripcion);
 
-    if (!suscriptoresActivos.contains(suscriptor) && !suscriptoresInactivos.contains(suscriptor) ) {
+    if (!suscriptoresActivos.contains(suscriptorNuevo) && !suscriptoresInactivos.contains(suscriptorNuevo) ) {
       
-      suscriptoresActivos.add(suscriptor);
+      suscriptoresActivos.add(suscriptorNuevo);
 
-      Cliente clienteActual = suscriptor.getCliente();
+      cliente.anadirRegistro(cliente.getNombre() + " bienvenido a " + NOMBRE_DE_LA_PLATAFORMA);
 
-      clienteActual.anadirRegistro(clienteActual.getNombre() + " bienvenido a " + NOMBRE_DE_LA_PLATAFORMA);
+    } else if (suscriptoresInactivos.contains(suscriptorNuevo)) {
 
-    } else if (suscriptoresInactivos.contains(suscriptor)) {
+      int indiceDelSuscriptor = suscriptoresInactivos.indexOf(suscriptorNuevo);
+
+      Suscriptor suscriptor = suscriptoresInactivos.get(indiceDelSuscriptor);
 
       suscriptoresActivos.add(suscriptor);
 
       suscriptoresInactivos.remove(suscriptor);
 
-      Cliente clienteActual = suscriptor.getCliente();
+      cliente.anadirRegistro("Bienvenido de vuelta " + cliente.getNombre());
 
-      clienteActual.anadirRegistro("Bienvenido de vuelta " + clienteActual.getNombre());
     }
-
+  
   }
   
   @Override

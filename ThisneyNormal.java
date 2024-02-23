@@ -5,6 +5,8 @@
  * @author Mata
  * @author Hermes
  * @author Steve
+ * 
+ * @version Febrero 2024
  */
 public class ThisneyNormal implements CobroThisney{
 

@@ -10,6 +10,8 @@
  * @author Mata
  * @author Hermes
  * @author Steve
+ * 
+ * @version Febrero 2024
  */
 public interface ServicioStreaming extends Sujeto{
 
