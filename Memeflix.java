@@ -32,8 +32,8 @@ public class Memeflix implements ServicioStreaming{
 
   /**
    * Constructor de la clase Memeflix, inicializa las listas, anade
-   * la Sucripcion de Memeflix para un dispositivo, Sucripcion de Memeflix para dos dispositivos 
-   * y Sucripcion de Memeflix para cuatro dispositivos a la lista de tiposDeSuscripvion.
+   * la u de Memeflix para un dispositivo, Suscripcion de Memeflix para dos dispositivos 
+   * y Suscripcion de Memeflix para cuatro dispositivos a la lista de tiposDeSuscripvion.
    */
   public Memeflix(){
 
@@ -45,11 +45,11 @@ public class Memeflix implements ServicioStreaming{
     
     tiposDeSuscripcion = new LinkedList<>();
 
-    tiposDeSuscripcion.add("Sucripcion de Memeflix para un dispositivo");
+    tiposDeSuscripcion.add("Suscripcion de Memeflix para un dispositivo");
 
-    tiposDeSuscripcion.add("Sucripcion de Memeflix para dos dispositivos");
+    tiposDeSuscripcion.add("Suscripcion de Memeflix para dos dispositivos");
 
-    tiposDeSuscripcion.add("Sucripcion de Memeflix para cuatro dispositivos");
+    tiposDeSuscripcion.add("Suscripcion de Memeflix para cuatro dispositivos");
 
   }
 
@@ -166,15 +166,15 @@ public class Memeflix implements ServicioStreaming{
     
     String tipoSuscripcion = suscriptor.getTipoDeSuscripcion();
     
-    if (tipoSuscripcion.equals("Sucripcion de Memeflix para un dispositivo")){
+    if (tipoSuscripcion.equals("Suscripcion de Memeflix para un dispositivo")){
       
       cobro = new MemeflixUnDispositivo();
 
-    }if (tipoSuscripcion.equals("Sucripcion de Memeflix para dos dispositivos")) {
+    }if (tipoSuscripcion.equals("Suscripcion de Memeflix para dos dispositivos")) {
       
       cobro = new MemeflixDosDispositivos();
 
-    }if (tipoSuscripcion.equals("Sucripcion de Memeflix para cuatro dispositivos")) {
+    }if (tipoSuscripcion.equals("Suscripcion de Memeflix para cuatro dispositivos")) {
       
       cobro = new MemeflixCuatroDispositivos();
     }

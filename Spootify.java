@@ -32,7 +32,7 @@ public class Spootify implements ServicioStreaming{
 
   /**
    * Constructor de la clase Spootify, inicializa las listas, anade
-   * la Suscripcion gratis de Spootify y Sucripcion premium de Spootify
+   * la Suscripcion gratis de Spootify y Suscripcion premium de Spootify
    * a la lista de tiposDeSuscripvion.
    */
   public Spootify(){
@@ -45,9 +45,9 @@ public class Spootify implements ServicioStreaming{
     
     tiposDeSuscripcion = new LinkedList<>();
 
-    tiposDeSuscripcion.add("Sucripcion gratis de Spootify");
+    tiposDeSuscripcion.add("Suscripcion gratis de Spootify");
 
-    tiposDeSuscripcion.add("Sucripcion premium de Spootify");
+    tiposDeSuscripcion.add("Suscripcion premium de Spootify");
 
   }
 
@@ -163,11 +163,11 @@ public class Spootify implements ServicioStreaming{
     
     String tipoSuscripcion = suscriptor.getTipoDeSuscripcion();
     
-    if (tipoSuscripcion.equals("Sucripcion gratis de Spootify")){
+    if (tipoSuscripcion.equals("Suscripcion gratis de Spootify")){
       
       cobro = new SpootifyGratis();
 
-    }if (tipoSuscripcion.equals("Sucripcion premium de Spootify")) {
+    }if (tipoSuscripcion.equals("Suscripcion premium de Spootify")) {
       
       cobro = new SpootifyPremium();
 

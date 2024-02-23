@@ -33,7 +33,7 @@ public class Thisney implements ServicioStreaming{
 
   /**
    * Constructor de la clase Thisney, inicializa las listas, anade
-   * la Suscripcion con descuento de Thisney+ y Sucripcion normal de Thisney+
+   * la Suscripcion con descuento de Thisney+ y Suscripcion normal de Thisney+
    * a la lista de tiposDeSuscripvion.
    */
   public Thisney(){
@@ -46,9 +46,9 @@ public class Thisney implements ServicioStreaming{
     
     tiposDeSuscripcion = new LinkedList<>();
 
-    tiposDeSuscripcion.add("Sucripcion con descuento de Thisney+");
+    tiposDeSuscripcion.add("Suscripcion con descuento de Thisney+");
 
-    tiposDeSuscripcion.add("Sucripcion normal de Thisney+");
+    tiposDeSuscripcion.add("Suscripcion normal de Thisney+");
 
   }
 
@@ -98,8 +98,6 @@ public class Thisney implements ServicioStreaming{
       suscriptoresActivos.remove(indiceDelSuscriptor);
 
       suscriptoresInactivos.add(suscriptor);
-
-      suscriptor.quitarDescuento();
 
       String mensajeDespedida = cliente.getNombre() + " lamentamos que dejes " + NOMBRE_DE_LA_PLATAFORMA;
 
@@ -166,21 +164,23 @@ public class Thisney implements ServicioStreaming{
     
     String tipoSuscripcion = suscriptor.getTipoDeSuscripcion();
     
-    if (suscriptor.verDescuento() && suscriptor.getAntiguedad() == 3) {
+    if (suscriptor.getAntiguedad() == 3) {
       
-      suscriptor.setTipoDeSuscripcion("Sucripcion normal de Thisney+");
+      suscriptor.setTipoDeSuscripcion("Suscripcion normal de Thisney+");
 
-      String actualizacion = "Tus meses con descuento han terminado, tu nueva suscripcion es: Sucripcion normal de Thisney+";
+      tipoSuscripcion = suscriptor.getTipoDeSuscripcion();
+
+      String actualizacion = "Tus meses con descuento han terminado, tu nueva suscripcion es: Suscripcion normal de Thisney+";
 
       cliente.anadirRegistro(actualizacion);
 
     }
 
-    if (tipoSuscripcion.equals("Sucripcion con descuento de Thisney+")){
+    if (tipoSuscripcion.equals("Suscripcion con descuento de Thisney+")){
       
       cobro = new ThisneyConDescuento();
 
-    }if (tipoSuscripcion.equals("Sucripcion normal de Thisney+")) {
+    }if (tipoSuscripcion.equals("Suscripcion normal de Thisney+")) {
       
       cobro = new ThisneyNormal();
 
@@ -256,8 +256,6 @@ public class Thisney implements ServicioStreaming{
 
     private Cliente cliente;
 
-    private boolean descuento;
-
     /**
      * Contructor de la clase Suscriptor que se usa para buscar un suscriptor que tenga
      * al mismo cliente.
@@ -327,26 +325,6 @@ public class Thisney implements ServicioStreaming{
     public void setTipoDeSuscripcion(String cadena){
 
       this.tipoSuscripcion = cadena;
-
-    }
-
-    /**
-     * Metodo que elimina el descuento.
-     */
-    public void quitarDescuento(){
-
-      descuento = false;
-
-    }
-
-    /**
-     * Metodo que indica si se tiene descuento o no.
-     * 
-     * @return true si se tiene descuento, false si no se tiene.
-     */
-    public boolean verDescuento(){
-
-      return descuento;
 
     }
 

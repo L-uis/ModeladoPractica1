@@ -1,6 +1,6 @@
 
 /**
- * Clase que permite hacer el cobro de una sucripcion de Memeflix para cuatro dispositivos.
+ * Clase que permite hacer el cobro de una u de Memeflix para cuatro dispositivos.
  * 
  * @author Mata
  * @author Hermes
@@ -12,7 +12,7 @@ public class MemeflixCuatroDispositivos implements CobroMemeflix{
 
   private final String RECHAZADO = "El pago a sido rechazado, se cancelara la suscripcion del servicio";
 
-  private final String APROVADO = " a pagado " + MONTO + " a Memeflix por : Sucripcion de Memeflix para cuatro dispositivos";
+  private final String APROVADO = " a pagado " + MONTO + " a Memeflix por : Suscripcion de Memeflix para cuatro dispositivos";
 
   @Override
   public String cobro(Cliente suscriptor) {

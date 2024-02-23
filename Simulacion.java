@@ -71,18 +71,18 @@ public class Simulacion {
     hvo.anadirRecomendacion("Dunkerque");
 
     // Se colocan los tipos de suscripciones como constantes
-    final String MEMEFLIX_UN_DISPOSITIVO = "Sucripcion de Memeflix para un dispositivo";
-    final String MEMEFLIX_DOS_DISPOSITIVOS = "Sucripcion de Memeflix para dos dispositivos";
-    final String MEMEFLIX_CUATRO_DISPOSITIVOS = "Sucripcion de Memeflix para cuatro dispositivos";
+    final String MEMEFLIX_UN_DISPOSITIVO = "Suscripcion de Memeflix para un dispositivo";
+    final String MEMEFLIX_DOS_DISPOSITIVOS = "Suscripcion de Memeflix para dos dispositivos";
+    final String MEMEFLIX_CUATRO_DISPOSITIVOS = "Suscripcion de Memeflix para cuatro dispositivos";
 
-    final String MOMAZON_NORMAL = "Sucripcion normal de Momazon Prime Video";
-    final String MOMAZON_PREMIUM = "Sucripcion premium de Momazon Prime Video";
+    final String MOMAZON_NORMAL = "Suscripcion normal de Momazon Prime Video";
+    final String MOMAZON_PREMIUM = "Suscripcion premium de Momazon Prime Video";
 
-    final String SPOOTIFY_GRATIS = "Sucripcion gratis de Spootify";
-    final String SPOOTIFY_PREMIUM = "Sucripcion premium de Spootify";
+    final String SPOOTIFY_GRATIS = "Suscripcion gratis de Spootify";
+    final String SPOOTIFY_PREMIUM = "Suscripcion premium de Spootify";
 
-    final String THISNEY_CON_DESCUENTO = "Sucripcion con descuento de Thisney+";
-    final String THISNEY_NORMAL = "Sucripcion normal de Thisney+";
+    final String THISNEY_CON_DESCUENTO = "Suscripcion con descuento de Thisney+";
+    final String THISNEY_NORMAL = "Suscripcion normal de Thisney+";
 
     final String HVO_PRUEBA = "Suscripcion de prueba de HVO Max";
     final String HVO_NORMAL = "Suscripcion normal de HVO Max";

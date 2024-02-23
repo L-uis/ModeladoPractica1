@@ -1,6 +1,6 @@
 
 /**
- * Clase que permite hacer el cobro de una sucripcion premium de Momazon Prime Video.
+ * Clase que permite hacer el cobro de una Suscripcion premium de Momazon Prime Video.
  * 
  * @author Mata
  * @author Hermes
@@ -12,7 +12,7 @@ public class MomazonPremium implements CobroMomazon{
 
   private final String RECHAZADO = "El pago a sido rechazado, se cancelara la suscripcion del servicio";
 
-  private final String APROVADO = " a pagado " + MONTO + " a Momazon Prime Video por : Sucripcion premium de Momazon Prime Video";
+  private final String APROVADO = " a pagado " + MONTO + " a Momazon Prime Video por : Suscripcion premium de Momazon Prime Video";
 
   @Override
   public String cobro(Cliente suscriptor) {

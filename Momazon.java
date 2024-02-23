@@ -162,11 +162,11 @@ public class Momazon implements ServicioStreaming{
     
     String tipoSuscripcion = suscriptor.getTipoDeSuscripcion();
     
-    if (tipoSuscripcion.equals("Sucripcion premium de Momazon Prime Video")){
+    if (tipoSuscripcion.equals("Suscripcion premium de Momazon Prime Video")){
       
       cobro = new MomazonNormal();
 
-    }if (tipoSuscripcion.equals("Sucripcion normal de Momazon Prime Video")) {
+    }if (tipoSuscripcion.equals("Suscripcion normal de Momazon Prime Video")) {
       
       cobro = new MomazonPremium();
 

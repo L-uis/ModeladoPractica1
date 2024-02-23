@@ -1,6 +1,6 @@
 
 /**
- * Clase que permite hacer el cobro de una sucripcion premium de Spootify.
+ * Clase que permite hacer el cobro de una Suscripcion premium de Spootify.
  * 
  * @author Mata
  * @author Hermes
@@ -12,7 +12,7 @@ public class SpootifyPremium implements CobroSpootify{
 
   private final String RECHAZADO = "El pago a sido rechazado, se cancelara la suscripcion del servicio";
 
-  private final String APROVADO = " a pagado " + MONTO + " a Spootify por : Sucripcion premium de Spootify";
+  private final String APROVADO = " a pagado " + MONTO + " a Spootify por : Suscripcion premium de Spootify";
 
   @Override
   public String cobro(Cliente suscriptor) {

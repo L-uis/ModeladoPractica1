@@ -98,8 +98,6 @@ public class HVO implements ServicioStreaming{
 
       suscriptoresInactivos.add(suscriptor);
 
-      suscriptor.desactivarSuscripcionDePrueba();
-
       String mensajeDespedida = cliente.getNombre() + " lamentamos que dejes " + NOMBRE_DE_LA_PLATAFORMA;
 
       cliente.anadirRegistro(mensajeDespedida);
@@ -165,8 +163,8 @@ public class HVO implements ServicioStreaming{
     
     String tipoSuscripcion = suscriptor.getTipoDeSuscripcion();
 
-    if (tipoSuscripcion.equals("Suscripcion de prueba de HVO Max") && !suscriptor.getSuscripcionDePrueba()) {
-      
+    if (suscriptor.getAntiguedad() == 3) {
+
       suscriptor.setTipoDeSuscripcion("Suscripcion normal de HVO Max");
 
       tipoSuscripcion = suscriptor.getTipoDeSuscripcion();
@@ -257,8 +255,6 @@ public class HVO implements ServicioStreaming{
 
     private Cliente cliente;
 
-    private boolean suscripcionDePrueba;
-
     /**
      * Contructor de la clase Suscriptor que se usa para buscar un suscriptor que tenga
      * al mismo cliente.
@@ -286,7 +282,6 @@ public class HVO implements ServicioStreaming{
 
       this.antiguedad = 0;
 
-      this.suscripcionDePrueba = true;
     }
 
     /**
@@ -323,17 +318,6 @@ public class HVO implements ServicioStreaming{
     }
 
     /**
-     * Metodo que devuelve si el suscriptor tiene o no una suscripcion de prueba.
-     * 
-     * @return true si el suscriptor tiene una suscripcion de prueba, false en caso contrario.
-     */
-    public boolean getSuscripcionDePrueba(){
-
-      return suscripcionDePrueba;
-
-    }
-
-    /**
      * Metodo que cambia el tipo de suscripcion del suscriptor por otro diferente.
      * 
      * @param cadena El nuevo tipo de suscripcion del suscriptor.
@@ -351,20 +335,6 @@ public class HVO implements ServicioStreaming{
     public void aumentarAntiguedad(){
 
       antiguedad++;
-
-      if (antiguedad == 3) {
-        desactivarSuscripcionDePrueba();
-      }
-
-    }
-
-    /**
-     * Metodo que desactiva la suscripcion de prueba del suscriptor.
-     * Asigna el valor false al atributo suscripcionDePrueba.
-     */
-    public void desactivarSuscripcionDePrueba(){
-
-      suscripcionDePrueba = false;
 
     }
 

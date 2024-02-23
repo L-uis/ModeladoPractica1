@@ -1,6 +1,6 @@
 
 /**
- * Clase que permite hacer el cobro de una sucripcion con descuento de Thisney+.
+ * Clase que permite hacer el cobro de una Suscripcion con descuento de Thisney+.
  * 
  * @author Mata
  * @author Hermes
@@ -12,7 +12,7 @@ public class ThisneyConDescuento implements CobroThisney{
   
   private final String RECHAZADO = "El pago a sido rechazado, se cancelara la suscripcion del servicio";
 
-  private final String APROVADO = " a pagado " + MONTO + " a Thisney+ por : Sucripcion con descuento de Thisney+";
+  private final String APROVADO = " a pagado " + MONTO + " a Thisney+ por : Suscripcion con descuento de Thisney+";
 
   @Override
   public String cobro(Cliente suscriptor) {

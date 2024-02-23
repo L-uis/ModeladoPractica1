@@ -1,6 +1,6 @@
 
 /**
- * Clase que permite hacer el cobro de una sucripcion de Memeflix para un dispositivo.
+ * Clase que permite hacer el cobro de una Suscripcion de Memeflix para un dispositivo.
  * 
  * @author Mata
  * @author Hermes
@@ -12,7 +12,7 @@ public class MemeflixUnDispositivo implements CobroMemeflix{
 
   private final String RECHAZADO = "El pago a sido rechazado, se cancelara la suscripcion del servicio";
 
-  private final String APROVADO = " a pagado " + MONTO + " a Memeflix por : Sucripcion de Memeflix para un dispositivo";
+  private final String APROVADO = " a pagado " + MONTO + " a Memeflix por : Suscripcion de Memeflix para un dispositivo";
 
   @Override
   public String cobro(Cliente suscriptor) {

@@ -18,7 +18,7 @@ public class Cliente implements Observador{
 
   private String nombre;
 
-  private double saldo;
+  private Banco banco;
 
   private LinkedList<ServicioStreaming> servicios;
 
@@ -36,11 +36,11 @@ public class Cliente implements Observador{
 
     this.nombre = nombre;
 
-    this.saldo = saldo;
-
     this.servicios = new LinkedList<ServicioStreaming>();
     
     this.registro = new Registro(nombre);
+
+    this.banco = new Banco(this, saldo);
   }
 
   /**
@@ -88,7 +88,9 @@ public class Cliente implements Observador{
    */
   public double getSaldo(){
 
-    return this.saldo;
+    double saldo = banco.getSaldo();
+
+    return saldo;
 
   }
 
@@ -100,7 +102,7 @@ public class Cliente implements Observador{
    */
   public void descontarSaldo(double pago){
 
-    this.saldo -= pago;
+    banco.hacerPago(pago);
   
   }
 
